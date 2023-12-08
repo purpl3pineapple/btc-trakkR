@@ -8,11 +8,11 @@ const Footer = () => {
 
     return (
         <footer className='pb-3 bg-dark text-center'>
-            <div>
+            <div className='pt-2'>
                 <IconContext.Provider value={{ color: "orange", size: 50 }}>
                     <BsCurrencyBitcoin />
                 </IconContext.Provider>
-                <p>Copyright &copy; {footerYear} All rights reserved</p>
+                <p>Copyright &copy; {footerYear}</p>
             </div>
         </footer>
     );
