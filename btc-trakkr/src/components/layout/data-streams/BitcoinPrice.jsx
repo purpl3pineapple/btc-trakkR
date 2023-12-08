@@ -56,16 +56,16 @@ const BitcoinPrice = () => {
 
 
     return (<>
-            {loading || btcPrice === null
-                ? <Spinner as="span" animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </Spinner>
+        {loading || btcPrice === null
+            ? <Spinner as="span" animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
 
             : <span className="fs-1 d-inline-flex align-items-center">
                 <FiDollarSign />
                 <span id="btc-price">{btcPrice}</span>
             </span>
-            }
+        }
     </>);
 };
 
