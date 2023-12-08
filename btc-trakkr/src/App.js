@@ -10,17 +10,33 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Container fluid className="d-flex flex-column align-items-between p-0 vh-100">
-          <TrakkrNavbar />
-          <Container fluid id="main" className="d-flex justify-content-center h-100 pb-5">
-            <Routes>
-              <Route path="/" element={<HomePage />}/>
-              <Route path="/mempool" element={<MempoolPage />}/>
-              <Route path="/*" element={<NotFound />} />
-            </Routes>
-          </Container>
-          <Footer />
-        </Container>
+        <Routes>
+          <Route path="/" element={
+            <Container fluid className="d-flex flex-column align-items-between p-0 vh-100" style={{
+              backgroundImage: `url(/images/raining-btc.jpg)`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+            }}>
+              <TrakkrNavbar />
+              <HomePage />
+              <Footer />
+            </Container>
+          }/>
+          <Route path="/mempool" element={
+            <Container fluid className="d-flex flex-column align-items-between p-0 vh-100">
+              <TrakkrNavbar />
+              <MempoolPage />
+              <Footer />
+            </Container>
+          }/>
+          <Route path="/*" element={
+            <Container fluid className="d-flex flex-column align-items-between p-0 vh-100">
+              <TrakkrNavbar />
+              <NotFound />
+              <Footer />
+            </Container>
+          }/>
+        </Routes>
       </Router>
     </div>
   );
