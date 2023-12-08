@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import {SiBitcoin} from "react-icons/si";
-import {Link} from "react-router-dom";
+import { SiBitcoin } from "react-icons/si";
+import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
+import { FaDatabase } from "react-icons/fa";
 
 const TrakkrNavbar = ({ title }) => {
   return (
@@ -21,7 +22,9 @@ const TrakkrNavbar = ({ title }) => {
 
             <Nav className="d-flex flex-row justify-content-evenly">
                 <Nav.Item className="mx-2">
-                    <Link className="btn btn-info" to="/mempool">Mempool</Link>
+                    <Link className="btn btn-info" to="/mempool">
+                        <FaDatabase /> Mempool
+                    </Link>
                 </Nav.Item>
             </Nav>
         </Container>
