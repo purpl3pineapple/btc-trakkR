@@ -1,15 +1,24 @@
 import Card from "react-bootstrap/Card";
 import BitcoinPrice from "../components/layout/data-streams/BitcoinPrice";
+import Container from "react-bootstrap/Container";
 
 const HomePage = () => {
 
     return (
-        <Card className="text-center w-50 bg-secondary" style={{ maxHeight: "250px" }}>
-            <Card.Header id="btc-price-card-header">Current BTC Price:</Card.Header>
-            <Card.Body className="bg-dark">
-                <BitcoinPrice />
-            </Card.Body>
-        </Card>
+        <Container fluid id="main" className="d-flex justify-content-center h-100 pb-5">
+            <Card id="btc-price-display" className="text-center w-50 bg-secondary" style={{ 
+                    maxHeight: "250px" 
+                }}>
+                <Card.Header id="btc-price-header">
+                    Current BTC Price:
+                </Card.Header>
+                <Card.Body id="btc-price-body" className="bg-dark">
+                    <Card.Text id="btc-price-wrap" className="mh-100 py-5">
+                        <BitcoinPrice />
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        </Container>
     );
 };
 
