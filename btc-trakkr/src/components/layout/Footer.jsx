@@ -7,7 +7,7 @@ const Footer = () => {
     const footerYear = new Date().getFullYear();
 
     return (
-        <footer className='pb-3 bg-secondary text-center'>
+        <footer className='pb-3 bg-dark text-center'>
             <div>
                 <IconContext.Provider value={{ color: "orange", size: 50 }}>
                     <BsCurrencyBitcoin />
