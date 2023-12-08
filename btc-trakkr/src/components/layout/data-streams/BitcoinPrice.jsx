@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Spinner from 'react-bootstrap/Spinner';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
+import { FiDollarSign } from "react-icons/fi";
 
 const BitcoinPrice = () => {
 
@@ -52,7 +53,10 @@ const BitcoinPrice = () => {
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
 
-                : <span className="fs-1">${btcPrice}</span>
+            : <span className="fs-1 d-inline-flex align-items-center">
+                <FiDollarSign />
+                <span id="btc-price">{btcPrice}</span>
+            </span>
             }
         </Card.Text>
     );
