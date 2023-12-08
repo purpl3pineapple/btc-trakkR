@@ -9,7 +9,7 @@ import { IconContext } from "react-icons";
 const TrakkrNavbar = ({ title }) => {
   return (
     <Navbar expand="lg" className="mb-5 shadow-lg bg-body-tertiary">
-        <Container className="mx-auto d-flex justify-content-between">
+        <Container fluid className="mx-4 d-flex justify-content-between">
             <Navbar.Brand>
                 <Link to="/" className="fs-4 fw-bold text-center text-reset text-decoration-none">
                     <IconContext.Provider value={{ color: "orange", size: 40 }}>
