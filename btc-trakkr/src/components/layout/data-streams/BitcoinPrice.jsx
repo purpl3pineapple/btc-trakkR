@@ -35,7 +35,17 @@ const BitcoinPrice = () => {
         if (lastMessage !== null){
 
             const { bitcoin } = JSON.parse(lastMessage.data);
-            setBtcPrice(bitcoin);
+
+            const splitter = bitcoin.split('.');
+
+            splitter[0] = splitter[0]
+            .split(/(\d{3})$/g)
+            .filter(item => item !== '')
+            .join(',')
+            
+            const BTC = splitter.join('.');
+
+            setBtcPrice(BTC);
         
         } else {
 
