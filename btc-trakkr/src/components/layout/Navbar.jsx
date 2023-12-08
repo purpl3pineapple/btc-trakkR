@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -7,7 +6,7 @@ import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaDatabase } from "react-icons/fa";
 
-const TrakkrNavbar = ({ title }) => {
+const TrakkrNavbar = () => {
   return (
     <Navbar expand="lg" className="mb-5 shadow-lg bg-body-tertiary">
         <Container fluid className="mx-4 d-flex justify-content-between">
@@ -16,7 +15,7 @@ const TrakkrNavbar = ({ title }) => {
                     <IconContext.Provider value={{ color: "orange", size: 40 }}>
                         <SiBitcoin id="btc-nav-icon" className="d-inline pe-2"/>
                     </IconContext.Provider>
-                    {title}
+                    TrakkR
                 </Link>
             </Navbar.Brand>
 
@@ -30,14 +29,6 @@ const TrakkrNavbar = ({ title }) => {
         </Container>
     </Navbar>
   );
-};
-
-TrakkrNavbar.defaultProps = {
-    title: "TrakkR"
-};
-
-TrakkrNavbar.propTypes = {
-    title: PropTypes.string
 };
 
 export default TrakkrNavbar;
