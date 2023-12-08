@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
 import Spinner from 'react-bootstrap/Spinner';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { FiDollarSign } from "react-icons/fi";
@@ -46,8 +45,7 @@ const BitcoinPrice = () => {
     }, [lastMessage]);
 
 
-    return (
-        <Card.Text className="mh-100 py-5">
+    return (<>
             {loading || btcPrice === null
                 ? <Spinner as="span" animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
@@ -58,8 +56,7 @@ const BitcoinPrice = () => {
                 <span id="btc-price">{btcPrice}</span>
             </span>
             }
-        </Card.Text>
-    );
+    </>);
 };
 
 export default BitcoinPrice;
