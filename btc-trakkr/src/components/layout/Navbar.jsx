@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 
 const TrakkrNavbar = ({ title }) => {
   return (
-    <Navbar expand="lg" className="mb-6 shadow-lg bg-body-tertiary">
+    <Navbar expand="lg" className="mb-5 shadow-lg bg-body-tertiary">
         <Container className="mx-auto d-flex justify-content-between">
             <Navbar.Brand>
                 <Link to="/" className="fs-4 fw-bold text-center text-reset text-decoration-none">
@@ -21,10 +21,7 @@ const TrakkrNavbar = ({ title }) => {
 
             <Nav className="d-flex flex-row justify-content-evenly">
                 <Nav.Item className="mx-2">
-                    <Link className="btn btn-dark" to="/">Home</Link>
-                </Nav.Item>
-                <Nav.Item className="mx-2">
-                    <Link className="btn btn-dark" to="/">About</Link>
+                    <Link className="btn btn-info" to="/mempool">Mempool</Link>
                 </Nav.Item>
             </Nav>
         </Container>
