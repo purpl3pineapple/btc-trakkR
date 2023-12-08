@@ -9,9 +9,9 @@ const BitcoinPrice = () => {
     
     const [loading, setLoading] = useState(true);
 
-    const BTC_PRICE_WEBSOCKET_URL = "wss://ws.coincap.io/prices?assets=bitcoin";
+    const { REACT_APP_BTC_WS_URL } = process.env;
 
-    const { lastMessage, readyState } = useWebSocket(BTC_PRICE_WEBSOCKET_URL, {
+    const { lastMessage, readyState } = useWebSocket(REACT_APP_BTC_WS_URL, {
         shouldReconnect: () => true,
     });
 
