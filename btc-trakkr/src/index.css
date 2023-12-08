@@ -16,7 +16,7 @@ code {
     monospace;
 }
 
-#btc-price-card-header {
-  background-color: orange;
+#btc-price-header {
+  background-color: #c17d00;
   color: black;
 }
