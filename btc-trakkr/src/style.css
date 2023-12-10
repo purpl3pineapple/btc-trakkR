@@ -11991,6 +11991,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+.fs-7 {
+  font-size: 0.8rem;
+}
+
 #btc-price-header {
   background-color: #fd7e14;
   color: black;
