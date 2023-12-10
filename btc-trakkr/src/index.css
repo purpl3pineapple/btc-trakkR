@@ -20,3 +20,21 @@ code {
   background-color: #c17d00;
   color: black;
 }
+
+.mempool-card:hover {
+  translate: 0 -5% 2rem;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  box-shadow:
+    inset 0 -1em 1em #181818,
+    0 0 0 2px #82848279,
+    0.1em 0.1em 1em orange;
+}
+
+.mempool-data-container {
+  box-shadow: 0.1em 0.1em 1em cyan;;
+}
+
+.mempool-data-header {
+  color:#04090b
+}
