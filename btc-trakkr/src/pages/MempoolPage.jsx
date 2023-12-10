@@ -7,6 +7,7 @@ import CardGroup from "react-bootstrap/Card";
 import MempoolDataSection from "../components/layout/MempoolDataSection";
 import MempoolDataValue from "../components/MempoolDataValue";
 import MempoolDataRow from "../components/layout/MempoolDataRow";
+import Table from "react-bootstrap/Table";
 
 const MempoolPage = () => {
 
@@ -64,57 +65,9 @@ const MempoolPage = () => {
           {title: 'Block ID 4', value: '11111111111111111111111111111111'},
         ]}/>
       }/>
-      <Container className="mempool-data-container d-flex flex-column justify-content-center text-center p-3 bg-body-tertiary rounded">
-        <h1 className="mb-3 container-fluid mempool-data-header">
-          <span className="bg-info fs-2 fw-bold p-3 my-4 rounded d-inline-block text-decoration-underline shadow text-reset">
-            Mempool Stats
-          </span>
-        </h1>
-        {/* <CardGroup className="h-auto d-flex flex-row justify-content-between bg-secondary border-none"> */}
-        <Row xs={1} md={4} className="g-3 flex-nowrap">
-          <Card className='mempool-card h-auto mx-3 flex-shrink-1 rounded-circle'>
-            <Card.Body>
-              <Card.Title className="fw-bold fs-6">
-                Transaction ID
-              </Card.Title>
-              <Card.Text className="fs-6">
-                00000000000000000000000000000000000
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className='mempool-card h-auto mx-3 flex-shrink-1 rounded-circle'>
-            <Card.Body>
-              <Card.Title className="text-center fw-bold fs-6">
-                Transaction ID
-              </Card.Title>
-              <Card.Text className="fs-6">
-                This card has supporting text below as a natural lead-in
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className='mempool-card h-auto mx-3 flex-shrink-1 rounded-circle'>
-            <Card.Body>
-              <Card.Title className="text-center fw-bold fs-6">
-                Card title
-              </Card.Title>
-              <Card.Text className="fs-6">
-                This is a wider card with supporting text below as 
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className='mempool-card h-auto mx-3 flex-shrink-1 rounded-circle'>
-            <Card.Body>
-              <Card.Title className="text-center fw-bold fs-6">
-                Card title
-              </Card.Title>
-              <Card.Text className="fs-6">
-                This is a wider card with supporting text below 
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          </Row>
-        {/* </CardGroup> */}
-      </Container>
+      <MempoolDataSection title="Mempool Block Info" content={
+        <Table></Table>
+      }/>
     </Container>
   );
 };
