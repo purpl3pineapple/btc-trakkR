@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import BitcoinPrice from "../components/layout/data-streams/BitcoinPrice";
+import BitcoinPrice from "../components/layout/BitcoinPrice";
 import Container from "react-bootstrap/Container";
 
 const HomePage = () => {
@@ -9,7 +9,7 @@ const HomePage = () => {
             <Card id="btc-price-display" className="text-center w-50 bg-secondary" style={{ 
                     maxHeight: "250px" 
                 }}>
-                <Card.Header id="btc-price-header">
+                <Card.Header id="btc-price-header" className="fs-4 fw-bold">
                     Current BTC Price:
                 </Card.Header>
                 <Card.Body id="btc-price-body" className="bg-dark">
