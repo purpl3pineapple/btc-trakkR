@@ -5,18 +5,25 @@ import { SiBitcoin } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaDatabase } from "react-icons/fa";
+import { BsHouseFill } from "react-icons/bs";
 
 const TrakkrNavbar = () => {
   return (
     <Navbar expand="lg" className="mb-5 shadow-lg bg-body-tertiary">
         <Container fluid className="mx-4 d-flex justify-content-between">
-            <Navbar.Brand>
-                <Link to="/" className="fs-4 fw-bold text-center text-reset text-decoration-none">
-                    <IconContext.Provider value={{ color: "orange", size: 40 }}>
-                        <SiBitcoin id="btc-nav-icon" className="d-inline pe-2"/>
-                    </IconContext.Provider>
-                    TrakkR
+        <Nav className="d-flex flex-row justify-content-evenly">
+            <Nav.Item className="mx-2">
+                <Link className="btn btn-warning" to="/">
+                    <BsHouseFill /> Home
                 </Link>
+                </Nav.Item>
+            </Nav>
+
+            <Navbar.Brand className="fs-2 fw-bold text-center text-reset text-decoration-none">
+                <IconContext.Provider value={{ color: "orange", size: 40 }}>
+                    <SiBitcoin id="btc-nav-icon" className="d-inline pe-2 bs-orange-500"/>
+                </IconContext.Provider>
+                TrakkR
             </Navbar.Brand>
 
             <Nav className="d-flex flex-row justify-content-evenly">
