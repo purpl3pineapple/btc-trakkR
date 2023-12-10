@@ -4,6 +4,9 @@ import useWebSocket from "react-use-websocket";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import CardGroup from "react-bootstrap/Card";
+import MempoolDataSection from "../components/layout/MempoolDataSection";
+import MempoolDataValue from "../components/MempoolDataValue";
+import MempoolDataRow from "../components/layout/MempoolDataRow";
 
 const MempoolPage = () => {
 
@@ -37,6 +40,30 @@ const MempoolPage = () => {
 
   return (
     <Container fluid id="mempool" className="d-flex flex-column justify-content-center w-100 vh-75 p-5">
+      <MempoolDataSection title="Mempool Stats" content={
+        <>
+          <MempoolDataRow data={[
+            {title: 'Transaction ID 1', value: '00000000000000000000000000000000'},
+            {title: 'Transaction ID 2', value: '00000000000000000000000000000000'},
+            {title: 'Transaction ID 3', value: '00000000000000000000000000000000'},
+            {title: 'Transaction ID 4', value: '00000000000000000000000000000000'},
+          ]}/>
+          <MempoolDataRow data={[
+            {title: 'Transaction ID 5', value: '00000000000000000000000000000000'},
+            {title: 'Transaction ID 6', value: '00000000000000000000000000000000'},
+            {title: 'Transaction ID 7', value: '00000000000000000000000000000000'},
+            {title: 'Transaction ID 8', value: '00000000000000000000000000000000'},
+          ]}/>
+        </>
+      }/>
+      <MempoolDataSection title="Mempool Blocks" content={
+        <MempoolDataRow data={[
+          {title: 'Block ID 1', value: '11111111111111111111111111111111'},
+          {title: 'Block ID 2', value: '11111111111111111111111111111111'},
+          {title: 'Block ID 3', value: '11111111111111111111111111111111'},
+          {title: 'Block ID 4', value: '11111111111111111111111111111111'},
+        ]}/>
+      }/>
       <Container className="mempool-data-container d-flex flex-column justify-content-center text-center p-3 bg-body-tertiary rounded">
         <h1 className="mb-3 container-fluid mempool-data-header">
           <span className="bg-info fs-2 fw-bold p-3 my-4 rounded d-inline-block text-decoration-underline shadow text-reset">
