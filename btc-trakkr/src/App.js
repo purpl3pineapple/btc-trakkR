@@ -6,6 +6,8 @@ import MempoolPage from "./pages/MempoolPage";
 import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import { BtcPriceProvider } from "./context/BTC-price/btc-price-context";
+import "../src/style.scss";
+
 
 function App() {
   return (
