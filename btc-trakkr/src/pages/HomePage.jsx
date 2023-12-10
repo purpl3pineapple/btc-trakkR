@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import BitcoinPrice from "../components/layout/BitcoinPrice";
+import BitcoinPrice from "../components/BitcoinPrice";
 import Container from "react-bootstrap/Container";
 
 const HomePage = () => {
