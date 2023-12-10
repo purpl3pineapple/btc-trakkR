@@ -7,12 +7,15 @@ const Footer = () => {
     const footerYear = new Date().getFullYear();
 
     return (
-        <footer className='pb-3 bg-dark text-center'>
+        <footer className='pb-3 bg-body-tertiary shadow text-center'>
             <div className='pt-2'>
                 <IconContext.Provider value={{ color: "orange", size: 50 }}>
                     <BsCurrencyBitcoin />
                 </IconContext.Provider>
                 <p>Copyright &copy; {footerYear}</p>
+                <span className='mx-3'>GITHUB</span>
+                <span className='mx-3'>LINKEDIN</span>
+                <span className='mx-3'>EMAIL</span>
             </div>
         </footer>
     );
