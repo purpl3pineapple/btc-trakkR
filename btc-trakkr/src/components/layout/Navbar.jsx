@@ -9,7 +9,7 @@ import { BsHouseFill } from "react-icons/bs";
 
 const TrakkrNavbar = () => {
   return (
-    <Navbar expand="lg" className="mb-5 shadow-lg bg-body-tertiary">
+    <Navbar expand="lg" className="shadow-lg bg-body-tertiary">
         <Container fluid className="mx-4 d-flex justify-content-between">
         <Nav className="d-flex flex-row justify-content-evenly">
             <Nav.Item className="mx-2">
