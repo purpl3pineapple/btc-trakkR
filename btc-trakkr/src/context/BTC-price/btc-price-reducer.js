@@ -8,7 +8,9 @@ const btcPriceReducer = (state, action) => {
         case 'GET_BTC_PRICE':
             return {
                 ...state,
-                btcPrice: action.payload,
+                btcPrice: action.payload.BTC,
+                increased: action.payload.increased,
+                decreased: action.payload.decreased,
                 loading: false
             };
     };
