@@ -5,7 +5,14 @@ import BtcPriceContext from "../context/BTC-price/btc-price-context";
 
 const BitcoinPrice = () => {
 
-    const { btcPrice, loading } = useContext(BtcPriceContext);
+    const { btcPrice, increased, decreased, loading } = useContext(BtcPriceContext);
+
+    const result = () => {
+
+        if(increased) return "#07a330";
+        else if(decreased) return "crimson";
+        else return "white";
+    };
 
     return (<>{
         loading || btcPrice === null
@@ -17,7 +24,7 @@ const BitcoinPrice = () => {
 
             : <span className="fs-1 d-inline-flex align-items-center">
                 <FiDollarSign />
-                <span id="btc-price">
+                <span id="btc-price" style={{ color: result() }}>
                     {btcPrice}
                 </span>
             </span>
