@@ -11992,7 +11992,7 @@ code {
 }
 
 .fs-7 {
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 #btc-price-header {
