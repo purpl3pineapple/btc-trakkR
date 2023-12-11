@@ -66,7 +66,47 @@ const MempoolPage = () => {
         ]}/>
       }/>
       <MempoolDataSection title="Mempool Block Info" content={
-        <Table></Table>
+        <Table responsive striped bordered hover variant="dark-info">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Hash</th>
+              <th>Tx Count</th>
+              <th>Username 1</th>
+              <th>Username 2</th>
+              <th>Username 3</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody className="fs-7">
+            <tr>
+              <td>Block 1</td>
+              <td>00000000000000000000000000000000</td>
+              <td>00000000000000000000000000000000</td>
+              <td>@00000000000000000000000000000000</td>
+              <td>00000000000000000000000000000000</td>
+              <td>00000000000000000000000000000000</td>
+              <td>00000000000000000000000000000000</td>
+            </tr>
+            <tr>
+              <td>Block 2</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>Username 2</td>
+              <td>Username 3</td>
+              <td>Email</td>
+            </tr>
+            <tr>
+              <td>Block 3</td>
+              <td colSpan={2}>Larry the Bird</td>
+              <td>@twitter</td>
+              <td>Username 2</td>
+              <td>Username 3</td>
+              <td>Email</td>
+            </tr>
+          </tbody>
+        </Table>
       }/>
     </Container>
   );
