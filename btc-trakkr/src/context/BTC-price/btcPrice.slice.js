@@ -1,27 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import TrakkrDataSlice from "../../classes/TrakkrDataSlice";
 
-const initialState = {
+const sliceBTC = new TrakkrDataSlice('BTC', {
     currentPrice: null,
     increased: null,
     decreased: null,
     loading: true
-};
+},
+{
+    updatePrice: (state, action) => {
 
-export const btcSlice = createSlice({
-    name: 'BTC',
-    initialState,
-    reducers: {
-
-        updatePrice: (state, action) => {
-
-            state.currentPrice = action.payload.BTC;
-            state.increased = action.payload.increased;
-            state.decreased = action.payload.decreased;
-            state.loading = false;
-        }
+        state.currentPrice = action.payload.BTC;
+        state.increased = action.payload.increased;
+        state.decreased = action.payload.decreased;
+        state.loading = false;
     }
 });
 
-export const { updatePrice } = btcSlice.actions;
-
-export default btcSlice.reducer;
+export default sliceBTC;
