@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import MempoolPage from "./pages/MempoolPage";
 import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
-import { BtcPriceProvider } from "./context/BTC-price/btc-price-context";
+import RainingBTC from "./images/raining-btc.jpg";
 import "../src/style.scss";
 
 
@@ -16,14 +16,12 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Container fluid className="d-flex flex-column align-items-between p-0 vh-100" style={{
-              backgroundImage: `url(/images/raining-btc.jpg)`,
+              backgroundImage: `url(${RainingBTC})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
             }}>
               <TrakkrNavbar />
-              <BtcPriceProvider>
                 <HomePage />
-              </BtcPriceProvider>
               <Footer />
             </Container>
           }/>
