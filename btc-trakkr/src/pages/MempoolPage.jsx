@@ -26,7 +26,7 @@ const MempoolPage = () => {
 
     onMessage: async msg => {
 
-      console.log({msg: JSON.parse(msg.data)});
+      console.log(JSON.parse(msg.data));
     },
 
     shouldReconnect: () => true,
