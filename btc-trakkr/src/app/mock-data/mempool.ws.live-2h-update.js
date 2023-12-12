@@ -19,6 +19,7 @@ export const mempoolMockLive2hUpdate = {
       12117201,
       22220937,
       3273976,
+
       1698665,
       939117,
       291252,
@@ -31,7 +32,8 @@ export const mempoolMockLive2hUpdate = {
       2799,
       7991,
       906,
-      4631, 
+
+      4631,
       139,
       0,
       0,
@@ -43,6 +45,7 @@ export const mempoolMockLive2hUpdate = {
       0,
       0,
       0,
+      
       0,
       0,
     ],
