@@ -2,11 +2,13 @@ import Spinner from 'react-bootstrap/Spinner';
 import { FiDollarSign } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import useWebSocket from "react-use-websocket";
-import { updatePrice } from "../context/BTC-price/btcPrice.slice";
+import sliceBTC from "../context/BTC-price/btcPrice.slice";
 
 const BTC_WS_URL = process.env.REACT_APP_COINCAP_WS_URL;
 
 const BitcoinPrice = () => {
+
+    const { updatePrice } = sliceBTC.actions;
 
     const { currentPrice, increased, decreased, loading } = useSelector(state => state.BTC);
 
