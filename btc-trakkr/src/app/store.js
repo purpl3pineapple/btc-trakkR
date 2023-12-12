@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import btcReducer from "../context/BTC-price/btcPrice.slice";
+import sliceBTC from "../context/BTC-price/btcPrice.slice";
+import blocksReducer from "../context/mempool/blocks"
 
 export const store = configureStore({
     reducer: {
-        BTC: btcReducer
+        BTC: sliceBTC.reducer,
+        mempool: blocksReducer
     },
 });

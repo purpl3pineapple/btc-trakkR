@@ -5,10 +5,16 @@ import MempoolDataRow from "../components/layout/MempoolDataRow";
 import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
+import { useSelector, useDispatch } from "react-redux";
+import { getBlocks } from "../context/mempool/blocks";
 
 const MempoolPage = () => {
 
   const { REACT_APP_MEMPOOL_WS_URL, REACT_APP_MEMPOOL_API_URL } = process.env;
+
+  const dispatch = useDispatch();
+
+  const mempoolBlocks = useSelector((state) => state.mempool);
 
   const { sendJsonMessage } = useWebSocket(REACT_APP_MEMPOOL_WS_URL, {
     onOpen: () => {
@@ -26,7 +32,15 @@ const MempoolPage = () => {
 
     onMessage: async msg => {
 
+      const getMempoolBlocks = await fetch(`${REACT_APP_MEMPOOL_API_URL}/blocks`);
+
+
+      const blocks = await getMempoolBlocks.json();
+
+      //dispatch(getBlocks(blocks));
+
       console.log(JSON.parse(msg.data));
+      
     },
 
     shouldReconnect: () => true,
