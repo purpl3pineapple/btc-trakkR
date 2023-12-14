@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types'
 import { IconContext } from 'react-icons';
 import { BsCurrencyBitcoin } from "react-icons/bs";
+import { AiFillGithub } from "react-icons/ai";
+import { AiFillLinkedin } from "react-icons/ai";
+import { AiFillMail } from "react-icons/ai";
 
 const Footer = () => {
 
@@ -13,9 +16,22 @@ const Footer = () => {
                     <BsCurrencyBitcoin />
                 </IconContext.Provider>
                 <p>Copyright &copy; {footerYear}</p>
-                <span className='mx-3'>GITHUB</span>
-                <span className='mx-3'>LINKEDIN</span>
-                <span className='mx-3'>EMAIL</span>
+                <span className='mx-3  '>
+                    <IconContext.Provider value={{ size: 30 }}>
+                        <AiFillGithub className='bg-secondary rounded'/>
+                    </IconContext.Provider>
+                </span>
+                <span className='mx-3'>
+                    <IconContext.Provider value={{ size: 30 }}>
+                        <AiFillLinkedin className='bg-primary rounded'/>
+                    </IconContext.Provider>
+                </span>
+                    
+                <span className='mx-3'>
+                    <IconContext.Provider value={{ size: 30 }}>
+                        <AiFillMail className='bg-success rounded'/>
+                    </IconContext.Provider>
+                </span>
             </div>
         </footer>
     );
