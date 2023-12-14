@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaDatabase } from "react-icons/fa";
 import { BsHouseFill } from "react-icons/bs";
+import { AiFillThunderbolt } from "react-icons/ai";
 
 const TrakkrNavbar = () => {
   return (
@@ -30,6 +31,11 @@ const TrakkrNavbar = () => {
                 <Nav.Item className="mx-2">
                     <Link className="btn btn-info" to="/mempool">
                         <FaDatabase /> Mempool
+                    </Link>
+                </Nav.Item>
+                <Nav.Item className="mx-2 rounded lightning-network-nav-link">
+                    <Link className="btn" to="/mempool">
+                        <AiFillThunderbolt /> Lightning
                     </Link>
                 </Nav.Item>
             </Nav>
