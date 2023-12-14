@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useSelector, useDispatch } from "react-redux";
-import { getBlocks } from "../context/mempool/blocks";
+import { useGetBlocksQuery } from "../api-services/mempool.service";
 
 const MempoolPage = () => {
 
@@ -43,11 +43,46 @@ const MempoolPage = () => {
       
     },
 
-    shouldReconnect: () => true,
-  });
+
+  if(mempoolBlocks.status === 'fulfilled'){
+
+    console.log(mempoolBlocks.data)
+  };
 
   return (
     <Container fluid id="mempool" className="d-flex flex-column align-items-center w-100 vh-75 p-5">
+      <MempoolDataSection title="Mempool Block Info" content={
+        <Table responsive striped bordered hover variant="dark-info">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>ID</th>
+              <th>Pool Name</th>
+              <th>Median Fee</th>
+              <th>Match Rate</th>
+              <th>Size</th>
+              <th>Txn Count</th>
+              <th>Timestamp</th>
+              <th>Median Time</th>
+              <th>Nonce</th>
+            </tr>
+          </thead>
+          <tbody className="fs-7">
+            {mempoolBlocks.status === 'fulfilled' && mempoolBlocks.data.map((block, idx) => <tr key={idx}>
+              <td>{idx + 1}</td>
+              <td>{block.id}</td>
+              <td>{block.extras.pool.name}</td>
+              <td>{block.extras.medianFee}</td>
+              <td>{block.extras.matchRate}</td>
+              <td>{block.size}</td>
+              <td>{block.tx_count}</td>
+              <td>{block.timestamp}</td>
+              <td>{block.mediantime}</td>
+              <td>{block.nonce}</td>
+            </tr>)}
+          </tbody>
+        </Table>
+      }/>
       <MempoolDataSection title="Mempool Stats" content={
         <>
           <MempoolDataRow data={[
