@@ -1,4 +1,5 @@
-import TrakkrDataSlice from "../../classes/TrakkrDataSlice";
+import TrakkrDataSlice from "../../components/TrakkrDataSlice";
+import btcMiddleware from "./btcPriceMiddleware";
 
 const sliceBTC = new TrakkrDataSlice('BTC', {
     currentPrice: null,
@@ -17,3 +18,8 @@ const sliceBTC = new TrakkrDataSlice('BTC', {
 });
 
 export default sliceBTC;
+
+btcMiddleware.startListening({
+    actionCreator: sliceBTC.actions.updatePrice,
+    effect: () => {}
+});
