@@ -12019,6 +12019,11 @@ code {
   background-color: #140330;
 }
 
+.lightning-network-nav-link {
+  background-color: #6f42c1;
+  color: white;
+}
+
 /* 
 <=== Example of how to use animations w/ @keyframes ===>
 
