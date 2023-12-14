@@ -6,7 +6,8 @@ import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetBlocksQuery } from "../api-services/mempool.service";
+import { useGetBlocksQuery, useGetRecentTxsQuery, useGetRecommendedFeesQuery } from "../api-services/mempool.service";
+import Row from "react-bootstrap/Row";
 
 const MempoolPage = () => {
 
@@ -42,13 +43,91 @@ const { sendJsonMessage } = useWebSocket(REACT_APP_BLOCKCHAIN_WS_URL, {
 
   const mempoolBlocks = useGetBlocksQuery();
 
-  if(mempoolBlocks.status === 'fulfilled'){
+  const mempoolFees = useGetRecommendedFeesQuery();
 
-    console.log(mempoolBlocks.data)
-  };
+  const mempoolTxns = useGetRecentTxsQuery();
+
+  console.log(mempoolTxns.data);
 
   return (
     <Container fluid id="mempool" className="d-flex flex-column align-items-center w-100 vh-75 p-5">
+      <MempoolDataSection title="Mempool Recommended Fees" content={
+        <Container className="h-100 w-75 p-4 d-flex flex-column align-items-center">
+          <ListGroup className="mx-3 pe-0 align-items-center container">
+            <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto">
+                Fastest Fee
+              </div>
+              <Badge bg="dark" pill className="w-auto">
+              {mempoolFees.data?.fastestFee}
+              </Badge>
+            </ListGroup.Item>
+            <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto">
+                Half-Hour Fee
+              </div>
+              <Badge bg="dark" pill className="w-auto">
+                {mempoolFees.data?.halfHourFee}
+              </Badge>
+            </ListGroup.Item>
+            <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto">
+                Hour Fee
+              </div>
+              <Badge bg="dark" pill className="w-auto">
+                {mempoolFees.data?.hourFee}
+              </Badge>
+            </ListGroup.Item>
+            <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto">
+                Economy Fee
+              </div>
+              <Badge bg="dark" pill className="w-auto">
+                {mempoolFees.data?.economyFee}
+              </Badge>
+            </ListGroup.Item>
+            <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto">
+                Minimum Fee
+              </div>
+              <Badge bg="dark" pill className="w-auto">
+                {mempoolFees.data?.minimumFee}
+              </Badge>
+            </ListGroup.Item>
+          </ListGroup>
+        </Container>
+      }/>
+      <MempoolDataSection title="Mempool Recent Transactions" content={
+        <Container className="h-100 w-100 p-4 d-flex flex-column align-items-center">
+          <ListGroup className="mx-3 pe-0 align-items-center container">
+            {mempoolTxns.data.map(txn => <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto p-3 d-flex flex-column align-items-start">
+                <div className="fw-bold fs-7 p-2">{txn.txid}</div>
+              </div>
+              <Row className="container h-100 justify-content-evenly align-items-center">
+              <Badge bg="dark" pill className="w-auto">
+                vSize: {txn.vsize} bytes
+              </Badge>
+              <Badge bg="dark" pill className="w-auto">
+                Fee: ${txn.fee}
+              </Badge>
+              <Badge bg="dark" pill className="w-auto">
+                Amount: ${txn.value}
+              </Badge>
+              </Row>
+            </ListGroup.Item>
+            )}
+            {/* <ListGroup.Item className="w-100 d-flex justify-content-between align-items-start" variant="info">
+              <div className="ms-2 me-auto">
+                Minimum Fee
+              </div>
+              <Badge bg="dark" pill className="w-auto">
+                {mempoolFees.data.minimumFee}
+              </Badge>
+            </ListGroup.Item> */}
+          </ListGroup>
+        </Container>
+      }/>
       <MempoolDataSection title="Mempool Block Info" content={
         <Table responsive striped bordered hover variant="dark-info">
           <thead>
