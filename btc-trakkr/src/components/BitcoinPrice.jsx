@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import useWebSocket from "react-use-websocket";
 import sliceBTC from "../context/BTC-price/btcPrice.slice";
 
-const BTC_WS_URL = process.env.REACT_APP_COINCAP_WS_URL;
-
 const BitcoinPrice = () => {
 
     const { updatePrice } = sliceBTC.actions;
@@ -14,7 +12,7 @@ const BitcoinPrice = () => {
 
     const dispatch = useDispatch();
 
-    useWebSocket(BTC_WS_URL, {
+    useWebSocket(process.env.REACT_APP_COINCAP_WS_URL, {
 
         onMessage: msg => {
 
