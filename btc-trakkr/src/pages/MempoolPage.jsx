@@ -43,6 +43,7 @@ const MempoolPage = () => {
       
     },
 
+  const mempoolBlocks = useGetBlocksQuery();
 
   if(mempoolBlocks.status === 'fulfilled'){
 
