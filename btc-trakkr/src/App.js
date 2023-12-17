@@ -7,33 +7,37 @@ import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import RainingBTC from "./images/raining-btc.jpg";
 import "../src/style.scss";
+import LightningNetworkPage from "./pages/LightningNetworkPage";
 
 
 function App() {
   return (
-    <div className="App">
+    <div className="App vh-100">
       <Router>
         <Routes>
           <Route path="/" element={
-            <Container fluid className="d-flex flex-column align-items-between p-0 vh-100" style={{
-              backgroundImage: `url(${RainingBTC})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover',
-            }}>
+            <Container fluid id="home" className="d-flex flex-column align-items-between p-0 h-100">
               <TrakkrNavbar />
                 <HomePage />
               <Footer />
             </Container>
           }/>
           <Route path="/mempool" element={
-            <Container fluid className="d-flex flex-column align-items-between p-0 vh-100">
+            <Container fluid className="d-flex flex-column align-items-between p-0 h-100">
               <TrakkrNavbar />
               <MempoolPage />
               <Footer />
             </Container>
           }/>
+          <Route path="/lightning" element={
+            <Container fluid className="d-flex flex-column align-items-between p-0 h-100">
+              <TrakkrNavbar />
+              <LightningNetworkPage />
+              <Footer />
+            </Container>
+          }/>
           <Route path="/*" element={
-            <Container fluid className="d-flex flex-column align-items-between p-0 vh-100">
+            <Container fluid className="d-flex flex-column align-items-between p-0 h-100">
               <TrakkrNavbar />
               <NotFound />
               <Footer />
