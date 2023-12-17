@@ -8,7 +8,8 @@ export const store = configureStore({
         BTC: sliceBTC.reducer,
         mempool: mempoolAPI.reducer
     },
-
+    immutableCheck: false,
+    serializableCheck: false,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(mempoolAPI.middleware)
 });
