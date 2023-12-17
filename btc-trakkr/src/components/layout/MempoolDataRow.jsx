@@ -1,16 +1,17 @@
 import Row from "react-bootstrap/Row";
 import MempoolDataValue from "../MempoolDataValue";
+import ListGroup from "react-bootstrap/ListGroup";
 
-const MempoolDataRow = ({ data }) => {
+const MempoolDataRow = ({ id, data }) => {
 
     return (
-        <Row xs={1} md={4} className="g-4 flex-nowrap p-4 justify-content-around">
+        <ListGroup id={id} xs={1} s={2} md={5} className="p-4" horizontal>
             {data.map((item, idx) => <MempoolDataValue
                 key={idx}
                 title={item.title} 
                 value={item.value} 
             />)}
-        </Row>
+        </ListGroup>
     );
 };
 
