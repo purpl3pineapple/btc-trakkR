@@ -5,8 +5,8 @@ import Container from "react-bootstrap/Container";
 const HomePage = () => {
 
     return (
-        <Container fluid id="main" className="mt-5 d-flex justify-content-center h-100 pb-5">
-            <Card id="btc-price-display" className="text-center w-50 bg-secondary" style={{ 
+        <Container fluid id="main" className="mt-5 d-flex justify-content-center vh-100 mh-100 pb-5">
+            <Card id="btc-price-display" className="text-center w-50 bg-dark" style={{ 
                     maxHeight: "250px" 
                 }}>
                 <Card.Header id="btc-price-header" className="fs-4 fw-bold">
