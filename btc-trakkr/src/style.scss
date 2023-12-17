@@ -23,35 +23,117 @@ code {
   font-size: 0.8rem !important;
 }
 
-#btc-price-header {
-  background-color: $orange-500;
-  color: black;
+.trakkr-nav-link, .mempool-data-header {
+  background-color: #1C82AD;
+  color: $gray-900;
 }
+
+.trakkr-nav-link>a, .trakkr-nav-link>a>svg {
+  color: #03C988;
+}
+
+.trakkr-nav-link:hover {
+  background-color: #03C988;
+  color: #00337C
+}
+
+#home, #mempool, #lightning, #lightning-acdn {
+  background-color: #13005A;
+}
+
+#btc-price-header {
+  background-color: #03C988;
+  color: $gray-900;
+}
+
+#btc-price-display {
+  box-shadow: 0.1em 0.1em 1em #03C988;
+}
+
+
 
 .mempool-card:hover {
   translate: 0 -5% 2rem;
   transition-duration: 0.3s;
   transition-timing-function: ease-out;
   box-shadow: inset 0 -1em 1em #181818, 0 0 0 2px #82848279,
-    0.1em 0.1em 1em orange;
+    0.1em 0.1em 1em #03C988;
 }
 
-.mempool-data-container {
-  box-shadow: 0.1em 0.1em 1em cyan;
+#mempool-pg-nav-wrap, .mempool-data-container {
+  box-shadow: 0.1em 0.1em 0.5em #03C988;
 }
 
-.mempool-data-header {
-  color: #04090b;
+.mempool-txn-data-hdr, .mempool-fee-header, .mempool-data-table-hdr {
+  color: #03C988;
 }
 
-#mempool {
-  background-color: $indigo-900;
+#mempool-pg-nav-wrap>ol {
+  margin-bottom: 0 !important;
 }
 
-.lightning-network-nav-link {
+.mempool-pg-nav-link {
+  color: #03C988;
+}
+
+.mempool-bcrmb>a {
+  text-decoration: none;
+}
+
+
+
+/* .lightning-network-nav-link, .lightning-24h-card {
   background-color: $purple-500;
-  color: white;
+} */
+
+.lightning-card, .lightning-hdr, .lightning-hdr>button {
+  background-color: #1C82AD;
 }
+
+.lightning-hdr, .lightning-hdr>button {
+  color: $gray-900;
+  font-weight: 600;
+}
+
+.lightning-hdr>button {
+  font-size: calc(1.275rem + 0.3vw) !important;
+}
+
+.lightning-hdr>button:not(.collapsed), .lightning-tgl-btn:hover, input[type="radio"]:checked~label {
+  background-color: #03C988 !important;
+  color: #00337C !important;
+  /* text-shadow: 0.1em 0.1em 1em yellow; */
+}
+
+input[type="radio"]:not(:checked)~label {
+  background-color: #1C82AD;
+}
+
+#lightning-card {
+  box-shadow: inset 0 -1em 1em #adadad, 0 0 0 2px #82848279,
+    0.1em 0.1em 1em yellow;
+}
+
+.lightning-card-hdr {
+  box-shadow: 0.1em 0.1em 1em #03C988;
+  /* border: 1px solid #03C988 !important; */
+}
+
+.lightning-card-hdr>.lightning-id-label {
+  color: #03C988;
+}
+
+.lightning-node-count-ctnr {
+  height: 125px !important;
+  width: 125px !important;
+  border-radius: 50% !important;
+}
+
+.lightning-tgl-btn {
+  border-color: #1C82AD;
+  color: #1C82AD;
+}
+
 /* 
 <=== Example of how to use animations w/ @keyframes ===>
 
