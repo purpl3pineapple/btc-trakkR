@@ -10,9 +10,9 @@ const Footer = () => {
     const footerYear = new Date().getFullYear();
 
     return (
-        <footer className='pb-3 bg-body-tertiary shadow text-center'>
+        <footer className='w-100 pb-3 bg-body-tertiary shadow text-center bottom-0 fs-7'>
             <div className='pt-2'>
-                <IconContext.Provider value={{ color: "orange", size: 50 }}>
+                <IconContext.Provider value={{ color: "orange", size: 40 }}>
                     <BsCurrencyBitcoin />
                 </IconContext.Provider>
                 <p>Copyright &copy; {footerYear}</p>
