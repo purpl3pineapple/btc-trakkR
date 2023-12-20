@@ -1,11 +1,10 @@
 import Card from "react-bootstrap/Card";
 import BitcoinPrice from "../components/BitcoinPrice";
-import Container from "react-bootstrap/Container";
 
 const HomePage = () => {
 
     return (
-        <Container fluid id="main" className="mt-5 d-flex justify-content-center vh-100 mh-100 pb-5">
+        <main id="main" className="container-fluid mt-5 d-flex justify-content-center flex-grow-1 pb-5">
             <Card id="btc-price-display" className="text-center w-50 bg-dark" style={{ 
                     maxHeight: "250px" 
                 }}>
@@ -18,7 +17,7 @@ const HomePage = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-        </Container>
+        </main>
     );
 };
 

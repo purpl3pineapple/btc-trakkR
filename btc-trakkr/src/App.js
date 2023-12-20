@@ -12,37 +12,37 @@ import LightningNetworkPage from "./pages/LightningNetworkPage";
 
 function App() {
   return (
-    <div className="App vh-100">
+    <div className="App d-flex flex-column position-relative">
       <Router>
         <Routes>
-          <Route path="/" element={
-            <Container fluid id="home" className="d-flex flex-column align-items-between p-0 h-100">
-              <TrakkrNavbar />
-                <HomePage />
-              <Footer />
+          <Route path="/" element={<>
+            <TrakkrNavbar />
+            <Container fluid id="home" className="d-flex flex-grow-1 flex-column align-items-between p-0 h-100">
+              <HomePage />
             </Container>
-          }/>
-          <Route path="/mempool" element={
-            <Container fluid className="d-flex flex-column align-items-between p-0 h-100">
-              <TrakkrNavbar />
+            <Footer />
+          </>}/>
+          <Route path="/mempool" element={<>
+            <TrakkrNavbar />
+            <Container fluid className="d-flex flex-grow-1 flex-column align-items-between p-0 h-100">
               <MempoolPage />
-              <Footer />
             </Container>
-          }/>
-          <Route path="/lightning" element={
-            <Container fluid className="d-flex flex-column align-items-between p-0 h-100">
-              <TrakkrNavbar />
+            <Footer />
+          </>}/>
+          <Route path="/lightning" element={<>
+            <TrakkrNavbar />
+            <Container fluid className="d-flex flex-grow-1 flex-column align-items-between p-0 h-100">
               <LightningNetworkPage />
-              <Footer />
             </Container>
-          }/>
-          <Route path="/*" element={
-            <Container fluid className="d-flex flex-column align-items-between p-0 h-100">
-              <TrakkrNavbar />
+            <Footer />
+          </>}/>
+          <Route path="/*" element={<>
+            <TrakkrNavbar />
+            <Container fluid className="d-flex flex-grow-1 flex-column align-items-between p-0 h-100">
               <NotFound />
-              <Footer />
             </Container>
-          }/>
+            <Footer />
+          </>}/>
         </Routes>
       </Router>
     </div>

@@ -1,4 +1,4 @@
-const coincapBitcoinMockData = {
+const coincapFetchBitcoinMockData = {
   data: {
     id: "bitcoin",
     rank: "1",
