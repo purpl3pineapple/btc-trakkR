@@ -46,7 +46,6 @@ const LightningNetworkPage = () => {
     nodes: topNodesByAge
   }];
 
-  console.log({topNodesByAge: topNodesByAge.data, topNodesByConnectivity: topNodesByConnectivity.data, topNodesByLiquidity: topNodesByLiquidity.data})
 
   const [currentTimeframe, setCurrentTimeframe] = useState('latest');
 
