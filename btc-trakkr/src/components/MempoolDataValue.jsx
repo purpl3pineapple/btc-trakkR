@@ -8,7 +8,7 @@ const MempoolDataValue = ({ title, value }) => {
       <div className="mempool-fee-header fs-6 fw-bold">
         {title}
       </div>
-      {value === null ? <ProgressBar animated variant='secondary' now={100} /> : `$${value}`}
+      {value === null ? <ProgressBar animated variant='secondary' now={100} /> : `${value} sat`}
     </ListGroup.Item>
   );
 };
