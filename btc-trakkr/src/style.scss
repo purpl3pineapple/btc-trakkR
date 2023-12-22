@@ -12,10 +12,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* min-height: 100vh; */
-  
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .App {
@@ -35,21 +31,20 @@ code {
   font-size: 0.8rem !important;
 }
 
-.trakkr-nav-link, .mempool-data-header {
-  background-color: #1C82AD;
-  color: $gray-900;
+a.trakkr-nav-link {
+  color: #1C82AD;
 }
 
-.trakkr-nav-link>a, .trakkr-nav-link>a>svg {
+a.trakkr-nav-link:hover, 
+a.trakkr-nav-link:focus, 
+a.trakkr-nav-link:active {
   color: #03C988;
 }
 
-.trakkr-nav-link:hover {
-  background-color: #03C988;
-  color: #00337C
-}
-
-#home, #mempool, #lightning, #lightning-acdn {
+#home, 
+#mempool, 
+#lightning, 
+#lightning-acdn {
   background-color: #13005A;
 }
 
@@ -64,8 +59,6 @@ code {
   box-shadow: 0.1em 0.1em 1em #03C988;
 }
 
-
-
 /* .mempool-card:hover {
   translate: 0 -5% 2rem;
   transition-duration: 0.3s;
@@ -74,11 +67,25 @@ code {
     0.1em 0.1em 1em #03C988;
 } */
 
-#mempool-pg-nav-wrap, .mempool-data-container {
+.mempool-blk-id:hover {
+  translate: 0 -5% 2rem;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  box-shadow: inset 0 -1em 1em #272727d5,
+    0.1em 0.1em 1em #1C82AD !important;
+}
+
+#mempool-pg-nav-wrap, 
+.mempool-data-container {
   box-shadow: 0.1em 0.1em 0.5em #03C988;
 }
 
-.mempool-txn-data-hdr, .mempool-fee-header, .mempool-data-table-hdr {
+.mempool-txn-data-hdr, 
+.mempool-fee-header, 
+.mempool-data-table-hdr, 
+.extras-list-hdr,
+.mempool-pg-nav-link,
+.mempool-block-crsl-item-hdr {
   color: #03C988;
 }
 
@@ -86,13 +93,21 @@ code {
   margin-bottom: 0 !important;
 }
 
-.mempool-pg-nav-link {
-  color: #03C988;
-}
-
 .mempool-bcrmb>a {
   text-decoration: none;
 }
+
+.mempool-data-header {
+  background-color: #1C82AD;
+  color: $gray-900;
+}
+
+.mempool-block-id-hdr {
+  background-color: #03C988;
+  color: $gray-900;
+}
+
+
 
 
 
@@ -102,11 +117,14 @@ code {
 #lightning {
   flex-grow: 1;
 }
-.lightning-card, .lightning-hdr, .lightning-hdr>button {
+.lightning-card, 
+.lightning-hdr, 
+.lightning-hdr>button {
   background-color: #1C82AD;
 }
 
-.lightning-hdr, .lightning-hdr>button {
+.lightning-hdr, 
+.lightning-hdr>button {
   color: $gray-900;
   font-weight: 600;
 }
@@ -115,13 +133,15 @@ code {
   font-size: calc(1.275rem + 0.3vw) !important;
 }
 
-.lightning-hdr>button:not(.collapsed), .lightning-tgl-btn:hover, .lightning-body input[type="radio"]:checked+label {
+.lightning-hdr>button:not(.collapsed), 
+.lightning-tgl-btn:hover, 
+input[type="radio"]:checked+label {
   background-color: #03C988 !important;
   color: #00337C !important;
   /* text-shadow: 0.1em 0.1em 1em yellow; */
 }
 
-.lightning-body input[type="radio"]:checked+label {
+input[type="radio"]:checked+label {
   font-weight: bold;
 }
 
