@@ -1,15 +1,12 @@
 import Container from "react-bootstrap/Container";
-import { useGetLightningLatestStatsQuery } from "../api-services/mempool.service";
+import mempoolAPI from "../api-services/mempool.service";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sliceLightning from "../context/lightning/lightning.slice";
 import { Spinner } from "react-bootstrap";
 
 const LightningFees = () => {
-
-  const lightningStatsLatest = useGetLightningLatestStatsQuery();
 
   const dispatch = useDispatch();
 
@@ -21,21 +18,13 @@ const LightningFees = () => {
     loading
   } = useSelector(state => state.lightning.latest);
 
-  const { updateLightningFees } = sliceLightning.actions;
-
-  const { isSuccess } = lightningStatsLatest;
-
   useEffect(() => {
 
-    dispatch(updateLightningFees({
-      avg_fee_rate: isSuccess ? lightningStatsLatest.data.latest.avg_fee_rate : null,
-      avg_base_fee_mtokens: isSuccess ? lightningStatsLatest.data.latest.avg_base_fee_mtokens : null,
-      med_fee_rate: isSuccess ? lightningStatsLatest.data.latest.med_fee_rate : null,
-      med_base_fee_mtokens: isSuccess ? lightningStatsLatest.data.latest.med_base_fee_mtokens : null,
-      loading: isSuccess ? false : true
-    }));
+    const fees = dispatch(mempoolAPI.endpoints.getLightningLatestStats.initiate());
 
+    return fees.unsubscribe();
   });
+
 
   return (<>{
     loading || [avg_fee_rate, avg_base_fee_mtokens, med_fee_rate, med_base_fee_mtokens].some(size => size === null)

@@ -1,65 +1,12 @@
 import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { SiBitcoin } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaDatabase } from "react-icons/fa";
-import { BsHouseFill } from "react-icons/bs";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import useWebSocket from "react-use-websocket";
-import sliceBTC from "../../context/BTC-price/btcPrice.slice";
 
 const TrakkrNavbar = () => {
-
-    const { updatePrice } = sliceBTC.actions;
-
-    const { currentPrice } = useSelector(state => state.BTC);
-
-    const dispatch = useDispatch();
-
-    useWebSocket(process.env.REACT_APP_COINCAP_WS_URL, {
-
-        onMessage: msg => {
-
-            try {
-
-                const current_BTC = currentPrice === null 
-                ? currentPrice 
-                : Number(currentPrice.replace(/,/g, ''));
-
-                const { bitcoin } = JSON.parse(msg.data);
-
-                const increased = current_BTC === null ? current_BTC : Number(bitcoin) > current_BTC;
-
-                const decreased = current_BTC === null ? current_BTC : Number(bitcoin) < current_BTC;
-
-                const dollars = bitcoin
-                .split('.')[0]
-                .split(/(\d{3})$/g)
-                .filter(item => item !== '')
-                .join(',');
-
-                const cents = /\.[0-9]+$/.exec(bitcoin)[0];
-
-                const BTC = dollars.concat(cents);
-
-                dispatch(updatePrice({
-                    BTC, 
-                    increased, 
-                    decreased, 
-                    loading: false
-                }));
-
-            } catch(error){
-
-                console.log({error});
-            };
-        },
-
-        shouldReconnect: () => true,
-    });
 
     return (
         <Navbar expand="lg" className="shadow-lg bg-body-tertiary">

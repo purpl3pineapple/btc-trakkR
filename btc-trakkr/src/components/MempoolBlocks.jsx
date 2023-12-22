@@ -1,8 +1,7 @@
 import MempoolDataSection from "../components/layout/MempoolDataSection";
 import Table from "react-bootstrap/Table";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetBlocksQuery } from "../api-services/mempool.service";
-import sliceMempoolBlocks from "../context/mempool/mempool.blocks.slice";
+import mempoolAPI from "../api-services/mempool.service";
 import Spinner from "react-bootstrap/Spinner";
 import { useEffect } from "react";
 
@@ -10,29 +9,20 @@ const MempoolBlocks = () => {
 
   const dispatch = useDispatch();
 
-  const { blocks, loading } = useSelector(state => state.mempoolBlocks);
+  const { mempool, loading } = useSelector(state => state.mempool.blocks);
 
-  const { updateMempoolBlocks } = sliceMempoolBlocks.actions;
-
-  const fetchedMempoolBlocks = useGetBlocksQuery();
-
-  const { isSuccess: mempoolBlocksFetchSuccess } = fetchedMempoolBlocks;
-
-  const timestampInit = new Date(0);
-
-  const ts = timestamp => timestampInit.setUTCSeconds(timestamp * 1000);
 
   useEffect(() => {
 
-    dispatch(updateMempoolBlocks({
-      blocks: mempoolBlocksFetchSuccess ? fetchedMempoolBlocks.data : null,
-      loading: false
-    }));
+    const blocks = dispatch(mempoolAPI.endpoints.getBlocks.initiate());
+
+    return blocks.unsubscribe();
   });
 
+
   return (
-    <MempoolDataSection id="mempool-blocks" title="Mempool Block Info" content={
-      loading || blocks == null
+    <MempoolDataSection id="mempool-blocks" title="Mempool Past Block Info" content={
+      loading
       ? <Spinner as="span" animation="border" role="status">
         <span className="visually-hidden">
           Loading...
@@ -60,11 +50,11 @@ const MempoolBlocks = () => {
           </tr>
         </thead>
           <tbody className="fs-7">
-            {blocks.map((block, idx) => <tr key={idx}>
+            {mempool.map((block, idx) => <tr key={idx}>
               <td>{block.id}</td>
-              <td>{block.extras.pool.name}</td>
-              <td>~{Number(block.extras.medianFee).toFixed()} sat/vB</td>
-              <td>{block.extras.matchRate}</td>
+              <td>{block.extras === undefined ? '***' : block.extras.pool.name}</td>
+              <td>~{block.extras === undefined ? '***' : Number(block.extras.medianFee).toFixed()} sat/vB</td>
+              <td>{block.extras === undefined ? '***' : block.extras.matchRate}</td>
               <td className="text-nowrap">{Number(block.size / 1000000).toFixed(1)} MB</td>
               <td>{block.tx_count}</td>
               <td>{new Date(block.timestamp * 1000).toLocaleString('en-US')}</td>

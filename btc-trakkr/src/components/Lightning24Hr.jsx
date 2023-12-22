@@ -2,15 +2,12 @@ import Badge from 'react-bootstrap/Badge';
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useDispatch, useSelector } from "react-redux";
-import { useGetLightning24hStatsQuery } from '../api-services/mempool.service';
+import mempoolAPI from '../api-services/mempool.service';
 import { useEffect } from 'react';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
-import sliceLightning from '../context/lightning/lightning.slice';
 
 const Lightning24Hr = () => {
-
-    const lightningStats24h = useGetLightning24hStatsQuery();
 
     const dispatch = useDispatch();
 
@@ -25,27 +22,14 @@ const Lightning24Hr = () => {
         loading 
     } = useSelector(state => state.lightning.twentyFourHr);
 
-    const { updateLightning24HrSize, updateLightning24HrNodes } = sliceLightning.actions;
-
-    const { isSuccess } = lightningStats24h;
-
+    
     useEffect(() => {
 
-        dispatch(updateLightning24HrSize({
-            added: isSuccess ? lightningStats24h.data[0].added : null,
-            total_capacity: isSuccess ? lightningStats24h.data[0].total_capacity : null,
-            channel_count: isSuccess ? lightningStats24h.data[0].channel_count : null,
-            loading: isSuccess ? false : true
-        }));
+        const stats = dispatch(mempoolAPI.endpoints.getLightning24hStats.initiate());
 
-        dispatch(updateLightning24HrNodes({
-            clearnet_nodes: isSuccess ? lightningStats24h.data[0].clearnet_nodes : null,
-            clearnet_tor_nodes: isSuccess ? lightningStats24h.data[0].clearnet_tor_nodes : null,
-            tor_nodes: isSuccess ? lightningStats24h.data[0].tor_nodes : null,
-            unannounced_nodes: isSuccess ? lightningStats24h.data[0].unannounced_nodes : null,
-            loading: isSuccess ? false : true
-        }));
+        return stats.unsubscribe();
     });
+
 
     return (<>
         <Container className='my-3 py-2 rounded shadow'>{

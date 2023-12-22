@@ -1,36 +1,33 @@
 import Container from "react-bootstrap/Container";
-import { useGetLightningLatestStatsQuery } from "../api-services/mempool.service";
+import mempoolAPI from "../api-services/mempool.service";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sliceLightning from "../context/lightning/lightning.slice";
 import Spinner from "react-bootstrap/Spinner";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 const LightningLatestNodes = () => {
 
-    const lightningStatsLatest = useGetLightningLatestStatsQuery();
-
     const dispatch = useDispatch();
 
-    const { node_count, clearnet_nodes, clearnet_tor_nodes, tor_nodes, unannounced_nodes, loading } = useSelector(state => state.lightning.latest);
-
-    const { updateLightningNodes } = sliceLightning.actions;
-
-    const { isSuccess } = lightningStatsLatest;
+    const {
+        node_count,
+        clearnet_nodes,
+        clearnet_tor_nodes,
+        tor_nodes,
+        unannounced_nodes,
+        loading
+    } = useSelector(state => state.lightning.latest);
+    
 
     useEffect(() => {
-    
-        dispatch(updateLightningNodes({
-          node_count: isSuccess ? lightningStatsLatest.data.latest.node_count : null,
-          clearnet_nodes: isSuccess ? lightningStatsLatest.data.latest.clearnet_nodes : null,
-          clearnet_tor_nodes: isSuccess ? lightningStatsLatest.data.latest.clearnet_tor_nodes : null,
-          tor_nodes: isSuccess ? lightningStatsLatest.data.latest.tor_nodes : null,
-          unannounced_nodes: isSuccess ? lightningStatsLatest.data.latest.unannounced_nodes : null,
-          loading: isSuccess ? false : true
-        }));
+
+        const lightningNodes = dispatch(mempoolAPI.endpoints.getLightningLatestStats.initiate());
+
+        return lightningNodes.unsubscribe();
     });
+
 
     return (
         <Container className='my-3 py-2 rounded shadow'>

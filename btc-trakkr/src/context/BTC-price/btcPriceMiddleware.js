@@ -1,5 +1,45 @@
-/* import { createListenerMiddleware } from "@reduxjs/toolkit";
+import { createListenerMiddleware } from "@reduxjs/toolkit";
+import sliceBTC from "./btcPrice.slice";
+
+const { updatePrice } = sliceBTC.actions;
 
 const btcMiddleware = createListenerMiddleware();
 
-export default btcMiddleware; */
+btcMiddleware.startListening({
+    actionCreator: updatePrice,
+    effect: async (action, listenerAPI) => {
+
+        listenerAPI.unsubscribe();
+
+        const {
+            BTC: { currentPrice }
+        } = listenerAPI.getOriginalState();
+
+        const { BTC } = action.payload;
+
+        const numCurrentPrice = currentPrice === null ? 0 : Number(currentPrice.replace(/,/g, ''));
+
+        const numBTC = Number(BTC.replace(/,/g, ''));
+
+        const increased =  numBTC > numCurrentPrice;
+
+        const decreased = numBTC < numCurrentPrice;
+
+        const change = [
+            {value: "increased", result: increased}, 
+            {value: "decreased", result: decreased}
+        ].find(({result}) => result === true).value;
+
+        listenerAPI.dispatch(
+            updatePrice({ 
+                BTC, 
+                change, 
+                loading: false 
+            })
+        );
+
+        listenerAPI.subscribe();
+    }
+});
+
+export default btcMiddleware;

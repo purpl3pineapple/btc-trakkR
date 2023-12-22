@@ -68,42 +68,6 @@ const sliceLightning = new TrakkrDataSlice('lightning', {
     update3Day: (state, action) => {
 
         state.threeDay = action.payload;
-    },
-
-    updateLightning3DaySize: (state, action) => {
-
-        console.log(action.payload)
-
-        state.threeDay[0].added = action.payload[0].added;
-        state.threeDay[0].total_capacity = action.payload[0].total_capacity;
-        state.threeDay[0].channel_count = action.payload[0].channel_count;
-
-        state.threeDay[1].added = action.payload[1].added;
-        state.threeDay[1].total_capacity = action.payload[1].total_capacity;
-        state.threeDay[1].channel_count = action.payload[1].channel_count;
-
-        state.threeDay[2].added = action.payload[2].added;
-        state.threeDay[2].total_capacity = action.payload[2].total_capacity;
-        state.threeDay[2].channel_count = action.payload[2].channel_count;
-        state.loading = false;
-    },
-
-    updateLightning3DayNodes: (state, action) => {
-
-        state.threeDay[0].clearnet_nodes = action.payload[0].clearnet_nodes;
-        state.threeDay[0].clearnet_tor_nodes = action.payload[0].clearnet_tor_nodes;
-        state.threeDay[0].tor_nodes = action.payload[0].tor_nodes;
-        state.threeDay[0].unannounced_nodes = action.payload[0].unannounced_nodes;
-
-        state.threeDay[1].clearnet_nodes = action.payload[1].clearnet_nodes;
-        state.threeDay[1].clearnet_tor_nodes = action.payload[1].clearnet_tor_nodes;
-        state.threeDay[1].tor_nodes = action.payload[1].tor_nodes;
-        state.threeDay[1].unannounced_nodes = action.payload[1].unannounced_nodes;
-
-        state.threeDay[2].clearnet_nodes = action.payload[2].clearnet_nodes;
-        state.threeDay[2].clearnet_tor_nodes = action.payload[2].clearnet_tor_nodes;
-        state.threeDay[2].tor_nodes = action.payload[2].tor_nodes;
-        state.threeDay[2].unannounced_nodes = action.payload[2].unannounced_nodes;
         state.loading = false;
     },
 });

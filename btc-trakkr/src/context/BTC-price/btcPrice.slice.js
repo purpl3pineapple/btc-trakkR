@@ -2,16 +2,14 @@ import TrakkrDataSlice from "../../components/TrakkrDataSlice";
 
 const sliceBTC = new TrakkrDataSlice('BTC', {
     currentPrice: null,
-    increased: null,
-    decreased: null,
+    change: null,
     loading: true
 },
 {
     updatePrice: (state, action) => {
 
         state.currentPrice = action.payload.BTC;
-        state.increased = action.payload.increased;
-        state.decreased = action.payload.decreased;
+        state.change = action.payload.change;
         state.loading = false;
     }
 });

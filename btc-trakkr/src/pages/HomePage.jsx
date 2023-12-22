@@ -1,7 +1,30 @@
 import Card from "react-bootstrap/Card";
 import BitcoinPrice from "../components/BitcoinPrice";
+import useWebSocket from "react-use-websocket";
+import { useDispatch, useSelector } from "react-redux";
+import sliceBTC from "../context/BTC-price/btcPrice.slice";
 
 const HomePage = () => {
+
+    const { updatePrice } = sliceBTC.actions;
+
+    const currentPrice = useSelector(state => state.BTC);
+
+    const dispatch = useDispatch();
+
+
+    useWebSocket(process.env.REACT_APP_COINCAP_WS_URL, {
+
+        onMessage: msg => {
+
+            const { bitcoin } = JSON.parse(msg.data);
+
+            dispatch(updatePrice({ BTC: bitcoin, ...currentPrice }));
+        },
+
+        shouldReconnect: () => true,
+    });
+    
 
     return (
         <main id="main" className="container-fluid mt-5 d-flex justify-content-center flex-grow-1 pb-5">

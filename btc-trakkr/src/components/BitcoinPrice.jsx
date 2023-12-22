@@ -4,14 +4,14 @@ import { useSelector } from "react-redux";
 
 const BitcoinPrice = () => {
 
-    const { currentPrice, increased, decreased, loading } = useSelector(state => state.BTC);
+    const { currentPrice, change, loading } = useSelector(state => state.BTC);
 
-    const result = () => {
-
-        if(increased) return "#07a330";
-        else if(decreased) return "crimson";
-        else return "white";
-    };
+    const colors = [
+        { value: "increased", color: "#07a330" },
+        { value: "decreased", color: "crimson" },
+        { value: null, color: "white" }
+    ];
+    
 
     return (<>{
         loading || currentPrice === null
@@ -23,7 +23,7 @@ const BitcoinPrice = () => {
 
             : <span className="fs-1 d-inline-flex align-items-center">
                 <FiDollarSign />
-                <span id="btc-price" style={{ color: result() }}>
+                <span id="btc-price" style={{ color: colors.find(({value}) => value === change).color }}>
                     {currentPrice}
                 </span>
             </span>

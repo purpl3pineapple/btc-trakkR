@@ -2,33 +2,24 @@ import Badge from 'react-bootstrap/Badge';
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useDispatch, useSelector } from "react-redux";
-import { useGetLightning3dStatsQuery } from '../api-services/mempool.service';
+import mempoolAPI from '../api-services/mempool.service';
 import { useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
-import sliceLightning from '../context/lightning/lightning.slice';
 
 const Lightning3Day = () => {
-
-    const lightningStats3d = useGetLightning3dStatsQuery();
 
     const dispatch = useDispatch();
 
     const threeDay = useSelector(state => state.lightning.threeDay);
-
-
-    console.log({ lightningStats3d})
     
-
-    const { update3Day, updateLightning3DaySize, updateLightning3DayNodes } = sliceLightning.actions;
-
-    const { isSuccess } = lightningStats3d;
 
     useEffect(() => {
 
-        dispatch(update3Day(isSuccess ? lightningStats3d.data : null, { loading: isSuccess ? false : true }));
+        const stats = dispatch(mempoolAPI.endpoints.getLightning3dStats.initiate());
 
-        //dispatch(updateLightning3DayNodes(isSuccess ? lightningStats3d.data : null, { loading: isSuccess ? false : true }));
+        return stats.unsubscribe();
     });
+
 
     return (<>{
         threeDay === null 
@@ -46,7 +37,7 @@ const Lightning3Day = () => {
                     </span>
                 </Spinner>
                     
-                : <Container className='my-3 py-2 rounded shadow'>
+                : <Container className='my-3 py-2 rounded shadow' key={idx}>
                     <Container className="px-5 py-2 my-5">
                         <span className='fw-bold fs-6 bg-success text-dark p-2 rounded-pill'>
                             {`Day ${idx + 1}`}

@@ -1,36 +1,32 @@
 import Container from "react-bootstrap/Container";
-import { useGetLightningLatestStatsQuery } from "../api-services/mempool.service";
+import mempoolAPI from "../api-services/mempool.service";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import sliceLightning from "../context/lightning/lightning.slice";
 import Spinner from "react-bootstrap/Spinner";
 import { ProgressBar } from "react-bootstrap";
 
 const LightningGeneral = () => {
 
-    const lightningLatest = useGetLightningLatestStatsQuery();
-
     const dispatch = useDispatch();
 
     const { id, added, loading } = useSelector(state => state.lightning.latest);
 
-    const { updateLightningLatestID, updateLightningLatestAdded } = sliceLightning.actions;
-
-    const { isSuccess } = lightningLatest;
-
     useEffect(() => {
+
+        const lightningID = dispatch(mempoolAPI.endpoints.getLightningLatestStats.initiate());
+
+        const lightningAddedTimestamp = dispatch(mempoolAPI.endpoints.getLightningLatestStats.initiate());
+
+
+        return () => {
+
+            lightningID.unsubscribe(); 
+            lightningAddedTimestamp.unsubscribe();
+        };
+        
+    }, [dispatch]);
+
     
-        dispatch(updateLightningLatestID({
-          id: isSuccess ? lightningLatest.data.latest.id : null,
-          loading: isSuccess ? false : true
-        }));
-
-        dispatch(updateLightningLatestAdded({
-            added: isSuccess ? lightningLatest.data.latest.added : null,
-            loading: isSuccess ? false : true
-        }));
-    });
-
     return (
         <Container className='my-3 py-2 rounded shadow'>
             <Container className="w-100 my-auto py-5 px-5 d-flex flex-row gx-5 justify-content-around align-items-center overflow-auto">{
