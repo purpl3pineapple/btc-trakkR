@@ -5,9 +5,8 @@ import Container from "react-bootstrap/Container";
 import MempoolPage from "./pages/MempoolPage";
 import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
-import RainingBTC from "./images/raining-btc.jpg";
-import "../src/style.scss";
 import LightningNetworkPage from "./pages/LightningNetworkPage";
+import "../src/style.scss";
 
 
 function App() {
