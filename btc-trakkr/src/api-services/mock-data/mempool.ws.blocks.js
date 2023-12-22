@@ -61,3 +61,65 @@ export const blocksMockData = {
     },
   },
 };
+
+export const blocksMockData2 = {
+  id: "000000000000000000042c32026736f490312993ed4f2e2b20d1fe25ec3903a6",
+  height: 822151,
+  version: 740843520,
+  timestamp: 1703113277,
+  bits: 386150037,
+  nonce: 3689211415,
+  difficulty: 67305906902031.39,
+  merkle_root:
+    "7cdecdd1dc9c64faabb6c33fe2a3240ff6f64c48dc90035f8c3e84afb8039438",
+  tx_count: 4064,
+  size: 1642365,
+  weight: 3993387,
+  previousblockhash:
+    "000000000000000000038be4a6c5eca5c0809e9d4380e979bbf165c958093bfa",
+  mediantime: 1703110756,
+  stale: false,
+  extras: {
+    reward: 895315676,
+    coinbaseRaw:
+      "03878b0c1c2f5669614254432f4d696e65642062792064616e6d3634373733332f2cfabe6d6df60cd172d3ec28c7eb9d9f7ca9c6f46de9d1d4f098af8de0935d6e77f3ad357d100000000000000010eecafd082fce74b9fa4e4fa35a020000",
+    orphans: [],
+    medianFee: 225.52387780562194,
+    feeRange: [
+      22.00328407224959, 205.34223706176962, 211.08156165442597,
+      226.5624468988955, 250.4145936981758, 348.95726495726495,
+      725.1356825462436,
+    ],
+    totalFees: 270315676,
+    avgFee: 66531,
+    avgFeeRate: 270,
+    utxoSetChange: 5506,
+    avgTxSize: 404.03000000000003,
+    totalInputs: 6062,
+    totalOutputs: 11568,
+    totalOutputAmt: 414542508227,
+    segwitTotalTxs: 3971,
+    segwitTotalSize: 1575904,
+    segwitTotalWeight: 3727651,
+    feePercentiles: null,
+    virtualSize: 998346.75,
+    coinbaseAddress: "18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX",
+    coinbaseSignature:
+      "OP_DUP OP_HASH160 OP_PUSHBYTES_20 536ffa992491508dca0354e52f32a3a7a679a53a OP_EQUALVERIFY OP_CHECKSIG",
+    coinbaseSignatureAscii:
+      "\u0003\f\u001c/ViaBTC/Mined by danm647733/,ú¾mmö\fÑrÓì(Çë|©ÆôméÑÔð¯à]nwó­5}\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0010îÊý\b/Ît¹úNO£Z\u0002\u0000\u0000",
+    header:
+      "0060282cfa3b0958c965f1bb79e980439d9e80c0a5ecc5a6e48b03000000000000000000389403b8af843e8c5f0390dc484cf6f60f24a3e23fc3b6abfa649cdcd1cdde7c3d728365952e041717e6e4db",
+    utxoSetSize: null,
+    totalInputAmt: null,
+    pool: {
+      id: 73,
+      name: "ViaBTC",
+      slug: "viabtc",
+    },
+    matchRate: 100,
+    expectedFees: 275313734,
+    expectedWeight: 3991816,
+    similarity: 0.9739697388008118,
+  },
+};
