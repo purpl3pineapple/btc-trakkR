@@ -16,7 +16,10 @@ const {
   updateLightningLatestAdded,
   updateLightning24HrSize,
   updateLightning24HrNodes,
-  update3Day
+  update3Day,
+  updateTopLiquidityNodes,
+  updateTopConnectivityNodes,
+  updateTopAgeNodes
 } = sliceLightning.actions;
 
 const mempoolAPI = createApi({
@@ -239,6 +242,8 @@ const mempoolAPI = createApi({
 
           const { data } = await queryFulfilled;
 
+          dispatch(updateTopLiquidityNodes(data));
+
         } catch(error){
 
           console.log("Couldn't get Lightning top liquid nodes...", {error});
@@ -254,6 +259,8 @@ const mempoolAPI = createApi({
 
           const { data } = await queryFulfilled;
 
+          dispatch(updateTopConnectivityNodes(data));
+
         } catch(error){
 
           console.log("Couldn't get Lightning top connective nodes...", {error});
@@ -268,6 +275,8 @@ const mempoolAPI = createApi({
         try {
 
           const { data } = await queryFulfilled;
+
+          dispatch(updateTopAgeNodes(data));
 
         } catch(error){
 
