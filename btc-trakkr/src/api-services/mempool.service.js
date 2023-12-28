@@ -3,9 +3,7 @@ import sliceMempool from '../context/mempool/mempool.slice';
 import sliceLightning from '../context/lightning/lightning.slice';
 
 const {
-  updateDiffAdj,
   updateBlocks,
-  updateNewestBlock,
 } = sliceMempool.actions;
 
 const {
@@ -27,23 +25,6 @@ const mempoolAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_MEMPOOL_API_URL }),
   endpoints: (builder) => ({
 
-    getDifficultyAdjustment: builder.query({
-      query: () => 'v1/difficulty-adjustment',
-      /* async onQueryStarted(id, {dispatch, queryFulfilled}){
-
-        try {
-
-          const { data } = await queryFulfilled;
-
-          dispatch(updateDiffAdj({da: data}));
-
-        } catch(error){
-
-          console.log("Couldn't get Mempool Difficulty Adjustment...", {error});
-        };
-      }, */
-    }),
-
     getBlocks: builder.query({
       query: () => 'v1/blocks',
       async onQueryStarted(id, {dispatch, queryFulfilled}){
@@ -63,24 +44,7 @@ const mempoolAPI = createApi({
 
     getBlockByHash: builder.query({
       query: (hash) => `block/${hash}`,
-      /* async onQueryStarted(hash, {dispatch, queryFulfilled}){
-
-        try {
-
-          const { data } = await queryFulfilled;
-
-          dispatch(updateNewestBlock({block: data}));
-
-        } catch(error){
-
-          console.log("Couldn't get Mempool block...", {error});
-        };
-      }, */
-    }),
-
-    getRecentTxs: builder.query({
-      query: () => 'mempool/recent',
-      /* async onQueryStarted(id, {dispatch, queryFulfilled}){
+      async onQueryStarted(hash, {dispatch, queryFulfilled}){
 
         try {
 
@@ -90,7 +54,7 @@ const mempoolAPI = createApi({
 
           console.log("Couldn't get Mempool block...", {error});
         };
-      }, */
+      },
     }),
 
     getTxById: builder.query({
@@ -106,23 +70,6 @@ const mempoolAPI = createApi({
           console.log("Couldn't get Mempool transaction...", {error});
         };
       },
-    }),
-
-    getRecommendedFees: builder.query({
-      query: () => 'v1/fees/recommended',
-      /* async onQueryStarted(id, {dispatch, queryFulfilled}){
-
-        try {
-
-          const { data } = await queryFulfilled;
-
-          dispatch(updateFees({}))
-
-        } catch(error){
-
-          console.log("Couldn't get Mempool Recommended Fees...", {error});
-        };
-      }, */
     }),
 
     getLightningLatestStats: builder.query({
@@ -291,18 +238,3 @@ const mempoolAPI = createApi({
 });
 
 export default mempoolAPI;
-
-export const { 
-    useGetBlocksQuery, 
-    useGetDifficultyAdjustmentQuery, 
-    useGetLightningLatestStatsQuery,
-    useGetRecentTxsQuery,
-    useGetRecommendedFeesQuery,
-    useGetLightning24hStatsQuery,
-    useGetLightning3dStatsQuery,
-    useGetTopNodesByConnectivityQuery,
-    useGetTopNodesByLiquidityQuery,
-    useGetTopNodesByAgeQuery,
-    useGetBlockByHashQuery,
-    useGetTxByIdQuery
-} = mempoolAPI;
