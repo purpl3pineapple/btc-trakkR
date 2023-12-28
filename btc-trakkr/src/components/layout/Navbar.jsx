@@ -10,7 +10,7 @@ const TrakkrNavbar = () => {
 
     return (
         <Navbar expand="md" sticky="top" className="shadow-lg bg-body-tertiary">
-            <span className="ps-3 me-4">
+            <span className="px-3">
                 <Navbar.Brand className="d-flex align-items-center fs-2 me-auto fw-bold text-center text-reset text-decoration-none">
                     <Link to="/" className="text-decoration-none text-reset" role="button" tabIndex="0">
                         <IconContext.Provider value={{ color: "orange", size: 40 }}>
@@ -20,7 +20,7 @@ const TrakkrNavbar = () => {
                     </Link>
                 </Navbar.Brand>
             </span>
-            <Navbar.Toggle aria-controls="trakkr-nav" />
+            <Navbar.Toggle aria-controls="trakkr-nav" className="mx-3" />
             <Navbar.Collapse id="trakkr-nav">
                 <Nav className="me-auto">
                     <Link id="mempool-nav-link" to="/mempool" role="button" tabIndex="0" className="nav-link mx-2 fw-bold trakkr-nav-link">
