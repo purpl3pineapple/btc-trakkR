@@ -4,6 +4,11 @@ const sliceLightning = new TrakkrDataSlice('lightning', {
     latest: {},
     twentyFourHr: {},
     threeDay: [],
+    topNodes: {
+        connectivity: null,
+        liquiduty: null,
+        age: null
+    },
     loading: true
 },
 {
@@ -68,6 +73,24 @@ const sliceLightning = new TrakkrDataSlice('lightning', {
     update3Day: (state, action) => {
 
         state.threeDay = action.payload;
+        state.loading = false;
+    },
+
+    updateTopLiquidityNodes: (state, action) => {
+
+        state.topNodes.liquidity = action.payload;
+        state.loading = false;
+    },
+
+    updateTopConnectivityNodes: (state, action) => {
+
+        state.topNodes.connectivity = action.payload;
+        state.loading = false;
+    },
+
+    updateTopAgeNodes: (state, action) => {
+
+        state.topNodes.age = action.payload;
         state.loading = false;
     },
 });
