@@ -1,4 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ToastContainer from "react-bootstrap/ToastContainer";
+import Toast from "react-bootstrap/Toast";
 import TrakkrNavbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Container from "react-bootstrap/Container";
@@ -10,6 +13,17 @@ import "../src/style.scss";
 
 
 function App() {
+
+  const mempoolBlocks = useSelector((state) => state.mempool.blocks);
+
+  const { newBlockDetected, newest, current } = mempoolBlocks;
+
+  const newestBlock = mempoolBlocks.loading
+    ? null
+    : [newest, current[0]].find(
+        (block) => block !== null && block !== undefined
+      );
+
   return (
     <div className="App d-flex flex-column position-relative">
       <Router>
@@ -23,7 +37,7 @@ function App() {
           </>}/>
           <Route path="/mempool" element={<>
             <TrakkrNavbar />
-            <Container fluid className="d-flex flex-grow-1 flex-column align-items-between p-0 h-100">
+            <Container id="mempool-page" fluid className="d-flex h-auto app-page px-0">
               <MempoolPage />
             </Container>
             <Footer />
@@ -44,6 +58,20 @@ function App() {
           </>}/>
         </Routes>
       </Router>
+      <ToastContainer position="top-center" className="mt-5">
+        <Toast
+          show={newBlockDetected}
+          autohide
+          delay={15000}
+          bg="info"
+        >
+          <Toast.Header>
+            <strong className="me-auto">New Block Detected!</strong>
+            <small>{new Date(Date.now()).toLocaleTimeString("en-US")}</small>
+          </Toast.Header>
+          <Toast.Body>{newestBlock === null ? 'Loading...' : newestBlock.id}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </div>
   );
 }
