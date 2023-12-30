@@ -1,4 +1,4 @@
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useEffect } from "react";
@@ -8,37 +8,43 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
-const LightningLatestSize = () => {
-
+const LightningLatestNodes = () => {
   const dispatch = useDispatch();
 
-  const { total_capacity, avg_capacity, med_capacity, channel_count, loading } =
-    useSelector((state) => state.lightning.latest);
+  const {
+    node_count,
+    clearnet_nodes,
+    clearnet_tor_nodes,
+    tor_nodes,
+    unannounced_nodes,
+    loading,
+  } = useSelector((state) => state.lightning.latest);
 
   useEffect(() => {
-    const lightningSize = dispatch(
-        mempoolAPI.endpoints.getLightningLatestStats.initiate()
-      );
-  
-      return lightningSize.unsubscribe();
-  }, [dispatch]);
+    const lightningNodes = dispatch(
+      mempoolAPI.endpoints.getLightningLatestStats.initiate()
+    );
+
+    return lightningNodes.unsubscribe();
+  });
 
   return loading ? (
-    <Spinner as="span" animation="border" role="status">
+    <Spinner as="span" animation="border" role="status" className="m-auto">
       <span className="visually-hidden">Loading...</span>
     </Spinner>
   ) : (
     <Col className="p-1 mx-4">
       <Card>
         <Card.Header className="fw-bolder extras-list-hdr text-center">
-          Size
+          Nodes
         </Card.Header>
         <ListGroup variant="flush">
           {[
-            { title: "Total Capacity:", value: total_capacity },
-            { title: "Avg. Capacity:", value: avg_capacity },
-            { title: "Med. Capacity:", value: med_capacity },
-            { title: "Channel Count:",  value: channel_count },
+            { title: "Node Count:", value: node_count },
+            { title: "ClearNet Nodes:", value: clearnet_nodes },
+            { title: "ClearNet Tor Nodes:", value: clearnet_tor_nodes },
+            { title: "Tor Nodes:", value: tor_nodes },
+            { title: "Unannounced Nodes:", value: unannounced_nodes },
           ].map(({ title, value }, idx) => (
             <ListGroup.Item
               key={idx}
@@ -63,4 +69,4 @@ const LightningLatestSize = () => {
   );
 };
 
-export default LightningLatestSize;
+export default LightningLatestNodes;

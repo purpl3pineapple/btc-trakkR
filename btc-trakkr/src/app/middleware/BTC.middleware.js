@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import sliceBTC from "./btcPrice.slice";
+import sliceBTC from "../slices/BTC.slice";
 
 const { updatePrice, updateStats } = sliceBTC.actions;
 

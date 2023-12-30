@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import sliceMempool from '../context/mempool/mempool.slice';
-import sliceLightning from '../context/lightning/lightning.slice';
+import sliceMempool from '../../slices/mempool.slice';
+import sliceLightning from '../../slices/lightning.slice';
 
 const {
   updateBlocks,

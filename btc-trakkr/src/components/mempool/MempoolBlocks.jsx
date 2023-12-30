@@ -1,7 +1,7 @@
 import MempoolDataSection from "../components/layout/MempoolDataSection";
 import Table from "react-bootstrap/Table";
 import { useSelector, useDispatch } from "react-redux";
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import Spinner from "react-bootstrap/Spinner";
 import { useEffect } from "react";
 

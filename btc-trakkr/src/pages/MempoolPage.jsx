@@ -1,15 +1,15 @@
 import useWebSocket from "react-use-websocket";
 import { useDispatch, useSelector } from "react-redux";
-import MempoolFees from "../components/MempoolFees";
-import MempoolTxns from "../components/MempoolTxns";
-import sliceMempool from "../context/mempool/mempool.slice";
-import MempoolUpcomingBlocks from "../components/MempoolUpcomingBlocks";
-import MempoolNewestBlock from "../components/MempoolNewestBlock";
-import MempoolPreviousBlocks from "../components/MempoolPreviousBlocks";
-import MempoolDataSection from "../components/layout/MempoolDataSection";
+import MempoolFees from "../components/mempool/MempoolFees";
+import MempoolTxns from "../components/mempool/MempoolTxns";
+import sliceMempool from "../app/slices/mempool.slice";
+import MempoolUpcomingBlocks from "../components/mempool/MempoolUpcomingBlocks";
+import MempoolNewestBlock from "../components/mempool/MempoolNewestBlock";
+import MempoolPreviousBlocks from "../components/mempool/MempoolPreviousBlocks";
+import MempoolDataSection from "../components/mempool/MempoolDataSection";
 import Row from "react-bootstrap/Row";
-import MempoolLive2HrStats from "../components/MempoolLive2HrStats";
-import mempoolAPI from "../api-services/mempool.service";
+import MempoolLive2HrStats from "../components/mempool/MempoolLive2HrStats";
+import mempoolAPI from "../app/services/api/mempool.api.service";
 import { useEffect } from "react";
 
 const MempoolPage = () => {

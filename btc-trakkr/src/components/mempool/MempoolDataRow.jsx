@@ -1,5 +1,5 @@
 import Row from "react-bootstrap/Row";
-import MempoolDataValue from "../MempoolDataValue";
+import MempoolDataValue from "./MempoolDataValue";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const MempoolDataRow = ({ id, data }) => {

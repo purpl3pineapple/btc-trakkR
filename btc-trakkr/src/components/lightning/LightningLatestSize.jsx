@@ -1,4 +1,4 @@
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useEffect } from "react";
@@ -8,43 +8,37 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
-const LightningLatestNodes = () => {
+const LightningLatestSize = () => {
+
   const dispatch = useDispatch();
 
-  const {
-    node_count,
-    clearnet_nodes,
-    clearnet_tor_nodes,
-    tor_nodes,
-    unannounced_nodes,
-    loading,
-  } = useSelector((state) => state.lightning.latest);
+  const { total_capacity, avg_capacity, med_capacity, channel_count, loading } =
+    useSelector((state) => state.lightning.latest);
 
   useEffect(() => {
-    const lightningNodes = dispatch(
-      mempoolAPI.endpoints.getLightningLatestStats.initiate()
-    );
-
-    return lightningNodes.unsubscribe();
-  });
+    const lightningSize = dispatch(
+        mempoolAPI.endpoints.getLightningLatestStats.initiate()
+      );
+  
+      return lightningSize.unsubscribe();
+  }, [dispatch]);
 
   return loading ? (
-    <Spinner as="span" animation="border" role="status" className="m-auto">
+    <Spinner as="span" animation="border" role="status">
       <span className="visually-hidden">Loading...</span>
     </Spinner>
   ) : (
     <Col className="p-1 mx-4">
       <Card>
         <Card.Header className="fw-bolder extras-list-hdr text-center">
-          Nodes
+          Size
         </Card.Header>
         <ListGroup variant="flush">
           {[
-            { title: "Node Count:", value: node_count },
-            { title: "ClearNet Nodes:", value: clearnet_nodes },
-            { title: "ClearNet Tor Nodes:", value: clearnet_tor_nodes },
-            { title: "Tor Nodes:", value: tor_nodes },
-            { title: "Unannounced Nodes:", value: unannounced_nodes },
+            { title: "Total Capacity:", value: total_capacity },
+            { title: "Avg. Capacity:", value: avg_capacity },
+            { title: "Med. Capacity:", value: med_capacity },
+            { title: "Channel Count:",  value: channel_count },
           ].map(({ title, value }, idx) => (
             <ListGroup.Item
               key={idx}
@@ -69,4 +63,4 @@ const LightningLatestNodes = () => {
   );
 };
 
-export default LightningLatestNodes;
+export default LightningLatestSize;

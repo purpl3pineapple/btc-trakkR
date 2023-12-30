@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "react-bootstrap/Spinner";

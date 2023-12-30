@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import MempoolDataSection from "../components/layout/MempoolDataSection";
+import MempoolDataSection from "./MempoolDataSection";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import { useSelector } from "react-redux";

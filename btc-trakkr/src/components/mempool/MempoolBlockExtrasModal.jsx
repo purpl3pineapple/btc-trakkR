@@ -6,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import Card from "react-bootstrap/Card";
 //import Button from "react-bootstrap/Button";
 import { useDispatch, useSelector } from "react-redux";
-import sliceMempool from "../context/mempool/mempool.slice";
+import sliceMempool from "../../app/slices/mempool.slice";
 
 const MempoolBlockExtrasModal = ({ block }) => {
   const blockModals = useSelector((state) => state.mempool.blocks.modals);

@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";

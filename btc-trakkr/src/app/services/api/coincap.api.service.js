@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import sliceBTC from "../context/BTC-price/btcPrice.slice";
+import sliceBTC from "../../slices/BTC.slice";
 
 const { updateStats } = sliceBTC.actions;
 

@@ -1,4 +1,4 @@
-import TrakkrDataSlice from "../../components/TrakkrDataSlice";
+import TrakkrDataSlice from "./TrakkrDataSlice";
 
 const sliceLightning = new TrakkrDataSlice('lightning', {
     latest: {},

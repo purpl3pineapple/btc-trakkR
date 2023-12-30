@@ -1,13 +1,13 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
-import LightningGeneral from "../components/LightningGeneral";
-import LightningLatestSize from "../components/LightningLatestSize";
-import Lightning24Hr from "../components/Lightning24Hr";
-import LightningFees from "../components/LightningFees";
-import LightningTimeframeToggler from "../components/LightningTimeframeToggler";
-import LightningLatestNodes from "../components/LightningLatestNodes";
-import Lightning3Day from "../components/Lightning3Day";
+import LightningGeneral from "./LightningGeneral";
+import LightningLatestSize from "./LightningLatestSize";
+import Lightning24Hr from "./Lightning24Hr";
+import LightningFees from "./LightningFees";
+import LightningTimeframeToggler from "./LightningTimeframeToggler";
+import LightningLatestNodes from "./LightningLatestNodes";
+import Lightning3Day from "./Lightning3Day";
 
 const LightningStats = () => {
   const [currentTimeframe, setCurrentTimeframe] = useState("latest");

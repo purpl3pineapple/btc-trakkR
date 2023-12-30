@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Accordion from "react-bootstrap/Accordion";
-import LightningTopNodes from "../components/LightningTopNodes";
-import LightningStats from "../components/LightningStats";
+import LightningTopNodes from "../components/lightning/LightningTopNodes";
+import LightningStats from "../components/lightning/LightningStats";
 
 const LightningNetworkPage = () => {
   return (

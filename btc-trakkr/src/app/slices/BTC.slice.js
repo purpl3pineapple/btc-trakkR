@@ -1,4 +1,4 @@
-import TrakkrDataSlice from "../../components/TrakkrDataSlice";
+import TrakkrDataSlice from "./TrakkrDataSlice";
 
 const sliceBTC = new TrakkrDataSlice('BTC', {
     currentPrice: null,

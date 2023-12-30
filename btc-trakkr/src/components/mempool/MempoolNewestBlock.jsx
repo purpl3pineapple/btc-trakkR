@@ -1,12 +1,12 @@
 import Container from "react-bootstrap/Container";
 import { useDispatch, useSelector } from "react-redux";
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import { useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
-import MempoolDataSection from "../components/layout/MempoolDataSection";
+import MempoolDataSection from "./MempoolDataSection";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import MempoolBlockExtrasModal from "./MempoolBlockExtrasModal";
 import MempoolListItem from "./MempoolListItem";

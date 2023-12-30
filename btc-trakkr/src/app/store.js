@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import sliceBTC from "../context/BTC-price/btcPrice.slice";
-import btcMiddleware from "../context/BTC-price/btcPriceMiddleware";
-import sliceLightning from "../context/lightning/lightning.slice";
-import sliceMempool from "../context/mempool/mempool.slice";
-import mempoolAPI from "../api-services/mempool.service";
-import mempoolMiddleware from "../context/mempool/mempoolMiddleware";
-import coincapAPI from "../api-services/coincap.service";
+import sliceBTC from "./slices/BTC.slice";
+import btcMiddleware from "./middleware/BTC.middleware";
+import sliceLightning from "./slices/lightning.slice";
+import sliceMempool from "./slices/mempool.slice";
+import mempoolAPI from "./services/api/mempool.api.service";
+import mempoolMiddleware from "./middleware/mempool.middleware";
+import coincapAPI from "./services/api/coincap.api.service";
 
 export const store = configureStore({
     reducer: {

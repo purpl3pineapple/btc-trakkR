@@ -5,9 +5,9 @@ import Carousel from "react-bootstrap/Carousel";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
-import MempoolDataSection from "../components/layout/MempoolDataSection";
+import MempoolDataSection from "./MempoolDataSection";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import mempoolAPI from "../api-services/mempool.service";
+import mempoolAPI from "../../app/services/api/mempool.api.service";
 import MempoolBlockExtrasModal from "./MempoolBlockExtrasModal";
 import MempoolListItem from "./MempoolListItem";
 

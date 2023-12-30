@@ -1,6 +1,6 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
-import sliceMempool from "./mempool.slice";
-import MempoolUtility from "./utility";
+import sliceMempool from "../slices/mempool.slice";
+import MempoolUtility from "../services/utility/mempool.utility";
 
 const {
   updateBlocks,
