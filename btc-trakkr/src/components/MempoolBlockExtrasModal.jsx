@@ -33,7 +33,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
         {block.id}
       </span>
       <Modal
-        show={modal === undefined ? false : modal.show}
+        show={[undefined, null].includes(modal) ? false : modal.show}
         onHide={handleCloseNewestBlock}
         size="xl"
         aria-labelledby="mempool-newest-block"
@@ -57,7 +57,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                 Health:
               </span>
               <span>
-                {(block.extras.similarity * 100).toFixed(2)}
+                {block.extras.similarity}
                 {""}%
               </span>
             </Col>
@@ -85,9 +85,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                         Total Input Amount:
                       </span>
                       <span className="text-break font-monospace fs-7">
-                        {block.extras.totalInputAmt === null
-                          ? "-"
-                          : block.extras.totalInputAmt}
+                        {block.extras.totalInputAmt}
                       </span>
                     </span>
                   </ListGroup.Item>
@@ -107,8 +105,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                         Total Output Amount:
                       </span>
                       <span className="text-break font-monospace fs-7">
-                        {(block.extras.totalOutputAmt / 100000000).toFixed(3)}{" "}
-                        BTC
+                        {block.extras.totalOutputAmt} BTC
                       </span>
                     </span>
                   </ListGroup.Item>
@@ -127,7 +124,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                         Expected Weight:
                       </span>
                       <span className="text-break font-monospace fs-7">
-                        {(block.extras.expectedWeight / 1000000).toFixed(2)} MVU
+                        {block.extras.expectedWeight} MVU
                       </span>
                     </span>
                   </ListGroup.Item>
@@ -174,7 +171,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                         Total Size:
                       </span>
                       <span className="text-break font-monospace fs-7">
-                        {(block.extras.segwitTotalSize / 1000000).toFixed(1)} MB
+                        {block.extras.segwitTotalSize} MB
                       </span>
                     </span>
                   </ListGroup.Item>
@@ -184,8 +181,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                         Total Weight:
                       </span>
                       <span className="text-break font-monospace fs-7">
-                        {(block.extras.segwitTotalWeight / 1000000).toFixed(2)}{" "}
-                        MVU
+                        {block.extras.segwitTotalWeight} MVU
                       </span>
                     </span>
                   </ListGroup.Item>
@@ -224,9 +220,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
                         uTXO Set Size:
                       </span>
                       <span className="text-break font-monospace fs-7">
-                        {block.extras.utxoSetSize === null
-                          ? "-"
-                          : block.extras.utxoSetSize}
+                        {block.extras.utxoSetSize}
                       </span>
                     </span>
                   </ListGroup.Item>
@@ -247,11 +241,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
               <Col className="p-2 text-center d-flex flex-column mx-4">
                 <h5 className="fw-bold mempool-data-table-hdr">Fee Range</h5>
                 <span className="rounded shadow p-3 d-flex flex-column">
-                  {block.extras.feeRange.map((fee, idx) => (
-                    <span key={idx} className="d-inline-block">
-                      {fee.toFixed()} sat
-                    </span>
-                  ))}
+                  ~{block.extras.feeRange} sat
                 </span>
               </Col>
             </Row>
@@ -273,7 +263,7 @@ const MempoolBlockExtrasModal = ({ block }) => {
               <Col className="p-2 text-center d-flex flex-column mx-4">
                 <h5 className="fw-bold mempool-data-table-hdr">Total Fees</h5>
                 <span className="rounded shadow p-3">
-                  {(block.extras.totalFees / 100000000).toFixed(3)} BTC
+                  {block.extras.totalFees} BTC
                 </span>
               </Col>
             </Row>
@@ -283,9 +273,11 @@ const MempoolBlockExtrasModal = ({ block }) => {
                   Fee Percentiles
                 </h5>
                 <span className="rounded shadow p-3">
-                  {block.extras.feePercentiles === null
-                    ? "-"
-                    : block.extras.feePercentiles}
+                  {block.extras.feePercentiles === '-' ? '-' : block.extras.feePercentiles.map((fee, idx) => (
+                    <span key={idx} className="d-inline-block">
+                      {fee} %
+                    </span>
+                  ))}
                 </span>
               </Col>
               <Col className="p-1 text-center d-flex flex-column mx-4">

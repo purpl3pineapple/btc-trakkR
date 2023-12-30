@@ -9,31 +9,22 @@ import MempoolDataSection from "../components/layout/MempoolDataSection";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import mempoolAPI from "../api-services/mempool.service";
 import MempoolBlockExtrasModal from "./MempoolBlockExtrasModal";
+import MempoolListItem from "./MempoolListItem";
 
 const MempoolPreviousBlocks = () => {
-  const mempoolBlocks = useSelector((state) => state.mempool.blocks);
-
-  const {newBlockDetected} = mempoolBlocks;
+  const { previous } = useSelector(
+    (state) => state.mempool.blocks
+  );
 
   const dispatch = useDispatch();
-
-  const previousBlocks = mempoolBlocks.loading
-    ? null
-    : mempoolBlocks.current.slice(1);
 
   useEffect(() => {
     const prevMempoolBlocks = dispatch(
       mempoolAPI.endpoints.getBlocks.initiate()
     );
 
-    if(newBlockDetected){
-      return prevMempoolBlocks.unsubscribe;
-    };
-
     return prevMempoolBlocks.unsubscribe;
-  }, [dispatch, newBlockDetected]);
-
-  console.log(newBlockDetected);
+  }, [dispatch]);
 
   return (
     <MempoolDataSection
@@ -42,10 +33,10 @@ const MempoolPreviousBlocks = () => {
       links={[{ title: "Transactions", to: "#mempool-recent-txs" }]}
       content={
         <Carousel interval={null}>
-          {previousBlocks === null ? (
+          {previous === null ? (
             <ProgressBar animated variant="secondary" now={100} />
           ) : (
-            previousBlocks.map((block, idx) => (
+            previous.map((block, idx) => (
               <Carousel.Item key={idx}>
                 <Container className="my-3 py-2 h-50">
                   <div className="m-5 p-5 rounded shadow bg-dark d-flex flex-column justify-content-center">
@@ -64,11 +55,7 @@ const MempoolPreviousBlocks = () => {
                           <h5 className="fw-bold mempool-data-table-hdr">
                             Timestamp
                           </h5>
-                          <span>
-                            {new Date(block.timestamp * 1000).toLocaleString(
-                              "en-US"
-                            )}
-                          </span>
+                          <span>{block.timestamp}</span>
                         </Col>
                         <Col className="p-2 text-center d-flex flex-column rounded shadow mx-4">
                           <h5 className="fw-bold mempool-data-table-hdr">
@@ -76,12 +63,12 @@ const MempoolPreviousBlocks = () => {
                           </h5>
                           <span>{block.tx_count}</span>
                         </Col>
-                        <Col className="p-1 text-center d-flex flex-column mx-4">
+                        <Col className="p-2 text-center d-flex flex-column rounded shadow mx-4">
                           <h5 className="fw-bold mempool-data-table-hdr">
                             Median Fee
                           </h5>
-                          <span className="rounded shadow p-3">
-                            ~{block.extras.medianFee.toFixed()} sat/vB
+                          <span className="text-nowrap">
+                            ~{block.extras.medianFee} sat/vB
                           </span>
                         </Col>
                       </Row>
@@ -91,7 +78,7 @@ const MempoolPreviousBlocks = () => {
                             Size
                           </h5>
                           <span className="rounded-pill shadow p-3">
-                            {(block.size / 1000000).toFixed(1)} MB
+                            {block.size} MB
                           </span>
                         </Col>
                         <Col className="p-2 text-center d-flex flex-column mx-4">
@@ -99,7 +86,7 @@ const MempoolPreviousBlocks = () => {
                             Weight
                           </h5>
                           <span className="rounded-pill shadow p-3">
-                            {(block.weight / 1000000).toFixed(2)} MVU
+                            {block.weight} MVU
                           </span>
                         </Col>
                         <Col className="p-2 text-center d-flex flex-column mx-4">
@@ -133,43 +120,25 @@ const MempoolPreviousBlocks = () => {
                             Stale
                           </h5>
                           <span className="rounded-pill shadow p-3">
-                            {block.stale === null
-                              ? "-"
-                              : block.stale === false
-                              ? "false"
-                              : "true"}
+                            {block.stale}
                           </span>
                         </Col>
                       </Row>
                       <ListGroup as="ul" className="my-5 w-auto">
-                        <ListGroup.Item as="li" variant="info">
-                          <span>
-                            <span className="me-3 fw-bolder">Difficulty:</span>
-                            <span className="text-break font-monospace fs-7">
-                              {block.difficulty}
-                            </span>
-                          </span>
-                        </ListGroup.Item>
-                        <ListGroup.Item as="li" variant="info">
-                          <span>
-                            <span className="me-3 fw-bolder text-nowrap">
-                              Previous Block Hash:
-                            </span>
-                            <span className="text-break font-monospace fs-7">
-                              {block.previousblockhash}
-                            </span>
-                          </span>
-                        </ListGroup.Item>
-                        <ListGroup.Item as="li" variant="info">
-                          <span>
-                            <span className="me-3 fw-bolder text-nowrap">
-                              Merkle Root:
-                            </span>
-                            <span className="text-break font-monospace fs-7">
-                              {block.merkle_root}
-                            </span>
-                          </span>
-                        </ListGroup.Item>
+                        {[
+                          { title: "Difficulty", value: block.difficulty },
+                          {
+                            title: "Previous Block Hash",
+                            value: block.previousblockhash,
+                          },
+                          { title: "Merkle Root", value: block.merkle_root },
+                        ].map(({ title, value }, idx) => (
+                          <MempoolListItem
+                            key={idx}
+                            title={title}
+                            data={value}
+                          />
+                        ))}
                       </ListGroup>
                     </div>
                   </div>

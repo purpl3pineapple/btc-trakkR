@@ -1,16 +1,33 @@
 import useWebSocket from "react-use-websocket";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MempoolFees from "../components/MempoolFees";
 import MempoolTxns from "../components/MempoolTxns";
 import sliceMempool from "../context/mempool/mempool.slice";
 import MempoolUpcomingBlocks from "../components/MempoolUpcomingBlocks";
 import MempoolNewestBlock from "../components/MempoolNewestBlock";
 import MempoolPreviousBlocks from "../components/MempoolPreviousBlocks";
+import MempoolDataSection from "../components/layout/MempoolDataSection";
+import Row from "react-bootstrap/Row";
+import MempoolLive2HrStats from "../components/MempoolLive2HrStats";
+import mempoolAPI from "../api-services/mempool.service";
+import { useEffect } from "react";
 
 const MempoolPage = () => {
   const { REACT_APP_MEMPOOL_WS_URL } = process.env;
 
+  const { newBlockDetected } = useSelector((state) => state.mempool.blocks);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (newBlockDetected) {
+      const prevMempoolBlocks = dispatch(
+        mempoolAPI.endpoints.getBlocks.initiate()
+      );
+
+      return prevMempoolBlocks.unsubscribe;
+    }
+  }, [dispatch, newBlockDetected]);
 
   const {
     updateInfo,
@@ -89,8 +106,21 @@ const MempoolPage = () => {
       id="mempool"
       className="flex-fill container-fluid d-flex flex-column align-items-center w-100 mh-100 p-5"
     >
-      <MempoolFees />
-      <MempoolTxns />
+      <MempoolDataSection
+        title="General"
+        content={
+          <>
+            <Row>
+              <MempoolLive2HrStats />
+              <MempoolFees />
+            </Row>
+            <Row className="pt-5">
+              <MempoolTxns />
+            </Row>
+          </>
+        }
+      />
+
       <MempoolUpcomingBlocks />
       <MempoolNewestBlock />
       <MempoolPreviousBlocks />
