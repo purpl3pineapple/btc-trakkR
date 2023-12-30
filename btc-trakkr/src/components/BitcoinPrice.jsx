@@ -7,9 +7,11 @@ const BitcoinPrice = () => {
     const { currentPrice, change, loading } = useSelector(state => state.BTC);
 
     const colors = [
-        { value: "increased", color: "#07a330" },
-        { value: "decreased", color: "crimson" },
-        { value: null, color: "white" }
+        /* { value: "increased", color: "#07a330" },
+        { value: "decreased", color: "crimson" }, */
+        { value: "increased", color: "success" },
+        { value: "decreased", color: "danger" },
+        { value: null, color: "light" }
     ];
     
 
@@ -21,9 +23,9 @@ const BitcoinPrice = () => {
                 </span>
             </Spinner>
 
-            : <span className="fs-1 d-inline-flex align-items-center">
-                <FiDollarSign />
-                <span id="btc-price" style={{ color: colors.find(({value}) => value === change).color }}>
+            : <span id="btc-price" className='font-monospace'>
+                <span className='text-secondary'>$</span>
+                <span /* style={{ color: colors.find(({value}) => value === change).color }} */ className={`fw-bold text-${colors.find(({value}) => value === change).color}`}>
                     {currentPrice}
                 </span>
             </span>
