@@ -13,10 +13,10 @@ const TrakkrNavbar = () => {
             <span className="px-3">
                 <Navbar.Brand className="d-flex align-items-center fs-2 me-auto fw-bold text-center text-reset text-decoration-none">
                     <Link to="/" className="text-decoration-none text-reset" role="button" tabIndex="0">
-                        <IconContext.Provider value={{ color: "orange", size: 40 }}>
+                        <IconContext.Provider value={{ color: "orange", size: 45 }}>
                             <SiBitcoin id="btc-nav-icon" className="d-inline pe-2 bs-orange-500"/>
                         </IconContext.Provider>
-                        <span className="fs-1">TrakkR</span>
+                        <span className="fs-1 pt-4">TrakkR</span>
                     </Link>
                 </Navbar.Brand>
             </span>
