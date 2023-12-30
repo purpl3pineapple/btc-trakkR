@@ -35,8 +35,8 @@ const sliceMempool = new TrakkrDataSlice(
     blocks: {
       newBlockDetected: false,
       newest: null,
+      previous: null,
       upcoming: null,
-      current: null,
       modals: [],
       loading: true,
     },
@@ -76,7 +76,7 @@ const sliceMempool = new TrakkrDataSlice(
     },
 
     updateBlocks: (state, action) => {
-      state.blocks.current = action.payload.blocks;
+      state.blocks.previous = action.payload.blocks;
       state.blocks.modals = action.payload.blocks.map((block) => {
         return { id: block.id, show: false };
       });
@@ -131,7 +131,7 @@ const sliceMempool = new TrakkrDataSlice(
           ? { id: modal.id, show: action.payload.show }
           : modal
       );
-      
+
       state.blocks.loading = false;
       state.loading = false;
     },
