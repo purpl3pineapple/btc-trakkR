@@ -3,6 +3,7 @@ import TrakkrDataSlice from "../../components/TrakkrDataSlice";
 const sliceBTC = new TrakkrDataSlice('BTC', {
     currentPrice: null,
     change: null,
+    stats: null,
     loading: true
 },
 {
@@ -10,6 +11,12 @@ const sliceBTC = new TrakkrDataSlice('BTC', {
 
         state.currentPrice = action.payload.BTC;
         state.change = action.payload.change;
+        state.loading = false;
+    },
+
+    updateStats: (state, action) => {
+
+        state.stats = action.payload;
         state.loading = false;
     }
 });

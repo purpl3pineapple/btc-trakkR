@@ -1,7 +1,7 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 import sliceBTC from "./btcPrice.slice";
 
-const { updatePrice } = sliceBTC.actions;
+const { updatePrice, updateStats } = sliceBTC.actions;
 
 const btcMiddleware = createListenerMiddleware();
 
@@ -37,6 +37,23 @@ btcMiddleware.startListening({
                 loading: false 
             })
         );
+
+        listenerAPI.subscribe();
+    }
+});
+
+btcMiddleware.startListening({
+    actionCreator: updateStats,
+    effect: async (action, listenerAPI) => {
+
+        listenerAPI.unsubscribe();
+
+        //console.log(action.payload);
+        
+
+        /* listenerAPI.dispatch(
+            updateStats()
+        ); */
 
         listenerAPI.subscribe();
     }
