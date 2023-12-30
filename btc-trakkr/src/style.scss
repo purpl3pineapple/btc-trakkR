@@ -124,6 +124,21 @@ a.trakkr-nav-link:active {
   color: $gray-900;
 }
 
+.mempool-recent-txs-list-item {
+  position: relative;
+  display: block;
+  color: #6edff6;
+  background-color: #032830;
+  text-decoration: none;
+  border: 0.5px solid #087990;
+}
+
+.mempool-recent-txs-list-item:hover{
+  color: #fff;
+  background-color: #087990;
+  border-color: #6edff6;
+}
+
 /* .mempool-newest-block-stat {
   box-shadow: inset 0 -1em 1em #181818,
     0.1em 0.1em 1em #1C82AD;
