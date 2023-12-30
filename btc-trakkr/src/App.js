@@ -16,13 +16,11 @@ function App() {
 
   const mempoolBlocks = useSelector((state) => state.mempool.blocks);
 
-  const { newBlockDetected, newest, current } = mempoolBlocks;
+  const { newBlockDetected, newest } = mempoolBlocks;
 
   const newestBlock = mempoolBlocks.loading
     ? null
-    : [newest, current[0]].find(
-        (block) => block !== null && block !== undefined
-      );
+    : newest;
 
   return (
     <div className="App d-flex flex-column position-relative">
@@ -67,7 +65,7 @@ function App() {
         >
           <Toast.Header>
             <strong className="me-auto">New Block Detected!</strong>
-            <small>{new Date(Date.now()).toLocaleTimeString("en-US")}</small>
+            <small>{newestBlock === null ? 'Loading...' : newestBlock.timestamp}</small>
           </Toast.Header>
           <Toast.Body>{newestBlock === null ? 'Loading...' : newestBlock.id}</Toast.Body>
         </Toast>
