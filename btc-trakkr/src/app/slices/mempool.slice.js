@@ -77,7 +77,7 @@ const sliceMempool = new TrakkrDataSlice(
 
     updateBlocks: (state, action) => {
       state.blocks.previous = action.payload.blocks;
-      state.blocks.modals = action.payload.blocks.map((block) => {
+      state.blocks.modals = action.payload.blocks.map(block => {
         return { id: block.id, show: false };
       });
       state.blocks.loading = false;
@@ -85,11 +85,11 @@ const sliceMempool = new TrakkrDataSlice(
     },
 
     updateNewestBlock: (state, action) => {
-      state.blocks.newest = action.payload.block;
+      state.blocks.previous = action.payload.blocks;
       state.blocks.modals = [
-        { id: action.payload.block.id, show: false },
+        { id: action.payload.blocks[0].id, show: false },
         ...state.blocks.modals,
-      ];
+      ].slice(0, -1);
       state.blocks.loading = false;
       state.loading = false;
     },
@@ -125,8 +125,8 @@ const sliceMempool = new TrakkrDataSlice(
       state.loading = false;
     },
 
-    controlModal: (state, action) => {
-      state.blocks.modals = state.blocks.modals.map((modal) =>
+    controlBlockModal: (state, action) => {
+      state.blocks.modals = state.blocks.modals.map(modal =>
         modal.id === action.payload.id
           ? { id: modal.id, show: action.payload.show }
           : modal
