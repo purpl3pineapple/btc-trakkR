@@ -3,36 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import MempoolFees from "../components/mempool/MempoolFees";
 import MempoolTxns from "../components/mempool/MempoolTxns";
 import sliceMempool from "../app/slices/mempool.slice";
-import MempoolUpcomingBlocks from "../components/mempool/MempoolUpcomingBlocks";
-import MempoolNewestBlock from "../components/mempool/MempoolNewestBlock";
-import MempoolPreviousBlocks from "../components/mempool/MempoolPreviousBlocks";
-import MempoolDataSection from "../components/mempool/MempoolDataSection";
+import DataSection from "../components/mempool/DataSection";
 import Row from "react-bootstrap/Row";
 import MempoolLive2HrStats from "../components/mempool/MempoolLive2HrStats";
-import mempoolAPI from "../app/services/api/mempool.api.service";
-import { useEffect } from "react";
+import MempoolBlocks from "../components/mempool/MempoolBlocks";
 
 const MempoolPage = () => {
   const { REACT_APP_MEMPOOL_WS_URL } = process.env;
 
-  const { newBlockDetected } = useSelector((state) => state.mempool.blocks);
+  const { previous } = useSelector((state) => state.mempool.blocks);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (newBlockDetected) {
-      const prevMempoolBlocks = dispatch(
-        mempoolAPI.endpoints.getBlocks.initiate()
-      );
-
-      return prevMempoolBlocks.unsubscribe;
-    }
-  }, [dispatch, newBlockDetected]);
-
   const {
+    updateNewestBlock,
     updateInfo,
     updateDiffAdj,
-    updateNewestBlock,
     updateTxs,
     updateFees,
     updateConversions,
@@ -67,8 +53,10 @@ const MempoolPage = () => {
       }
 
       if (data.block !== undefined) {
+        const { block } = data;
         dispatch(updateNewBlockDetectedStatus(true));
-        dispatch(updateNewestBlock({ block: data.block }));
+
+        dispatch(updateNewestBlock({ blocks: [block, ...previous] }));
 
         setTimeout(() => dispatch(updateNewBlockDetectedStatus(false)), 15000);
       }
@@ -106,7 +94,7 @@ const MempoolPage = () => {
       id="mempool"
       className="flex-fill container-fluid d-flex flex-column align-items-center w-100 mh-100 p-5"
     >
-      <MempoolDataSection
+      <DataSection
         title="General"
         content={
           <>
@@ -121,9 +109,7 @@ const MempoolPage = () => {
         }
       />
 
-      <MempoolUpcomingBlocks />
-      <MempoolNewestBlock />
-      <MempoolPreviousBlocks />
+      <MempoolBlocks />
     </main>
   );
 };

@@ -3,7 +3,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import MempoolListItem from "./MempoolListItem";
+import ListItem from "./ListItem";
 
 const MempoolFees = () => {
   const { economyFee, fastestFee, halfHourFee, hourFee, minimumFee, loading } =
@@ -30,7 +30,7 @@ const MempoolFees = () => {
           </Card.Header>
           <ListGroup variant="flush">
             {mempoolFees.map(({ title, value }, idx) => (
-              <MempoolListItem key={idx} title={title} data={`${value} sat`} />
+              <ListItem key={idx} title={title} data={`${value} sat`} />
             ))}
           </ListGroup>
         </Card>

@@ -3,7 +3,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import MempoolListItem from "./MempoolListItem";
+import ListItem from "./ListItem";
 
 const MempoolLive2HrStats = () => {
   const { liveStats, loading } = useSelector((state) => state.mempool);
@@ -41,7 +41,7 @@ const MempoolLive2HrStats = () => {
           </Card.Header>
           <ListGroup variant="flush">
             {mempoolLiveStats.map(({ title, value }, idx) => (
-              <MempoolListItem key={idx} title={title} data={value} />
+              <ListItem key={idx} title={title} data={value} />
             ))}
           </ListGroup>
         </Card>
