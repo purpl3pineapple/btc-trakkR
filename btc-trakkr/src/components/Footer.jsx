@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { IconContext } from 'react-icons';
 import { BsCurrencyBitcoin } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
@@ -36,7 +35,5 @@ const Footer = () => {
         </footer>
     );
 };
-
-Footer.propTypes = {};
 
 export default Footer;
