@@ -38,13 +38,13 @@ const HomePage = () => {
   return (
     <Row className="w-100 p-3">
         <Col className="p-1 mx-4">
-          <Card className="shadow-lg w-75 mx-auto">
-            <Card.Header className="fw-bolder extras-list-hdr text-center fs-1">
+          <Card className="shadow-lg w-50 mx-auto">
+            <Card.Header className="fw-bolder btc-stats-hdr text-center fs-1">
               {stats === null ? '' : stats.symbol}
             </Card.Header>
             <ListGroup variant="flush">
               <ListGroup.Item
-                variant="primary"
+                variant="info"
                 className="py-4 d-flex flex-sm-column flex-md-row justify-content-sm-center justify-content-md-between align-items-md-center"
               >
                 <Badge bg="dark" pill className="w-50 px-3 mx-auto fs-2">
@@ -56,24 +56,24 @@ const HomePage = () => {
                 variant="dark"
                 className="fs-5 d-flex flex-sm-column flex-md-row justify-content-sm-center justify-content-md-between align-items-md-center"
               >
-                <h3 className="fw-bolder text-center text-info">Supply:</h3>
-                  <span className="text-break font-monospace">{stats === null ? '' : stats.supply}</span>
+                <span className="me-2 fw-bolder text-center text-nowrap btc-stats-hdr">Supply:</span>
+                  <span className="text-break font-monospace">{stats === null ? '' : `~${Number(stats.supply).toFixed()} BTC`}</span>
               </ListGroup.Item>
               <ListGroup.Item
                 as="li"
                 variant="dark"
                 className="fs-5 d-flex flex-sm-column flex-md-row justify-content-sm-center justify-content-md-between align-items-md-center"
               >
-                <h3 className="fw-bolder text-center text-info">Market Cap:</h3>
-                  <span className="text-break font-monospace">{stats === null ? '' : stats.marketCapUsd}</span>
+                <span className="me-2 fw-bolder text-center text-nowrap btc-stats-hdr">Market Cap:</span>
+                  <span className="text-break font-monospace">{stats === null ? '' : `$${Number(stats.marketCapUsd).toFixed(2)}`}</span>
               </ListGroup.Item>
               <ListGroup.Item
                 as="li"
                 variant="dark"
                 className="fs-5 d-flex flex-sm-column flex-md-row justify-content-sm-center justify-content-md-between align-items-md-center"
               >
-                <h3 className="fw-bolder text-center text-info">Market Volume:</h3>
-                  <span className="text-break font-monospace">{stats === null ? '' : stats.volumeUsd24Hr}</span>
+                <span className="me-2 fw-bolder text-center text-nowrap btc-stats-hdr">Market Volume:</span>
+                  <span className="text-break font-monospace">{stats === null ? '' : `$${Number(stats.volumeUsd24Hr).toFixed(2)}`}</span>
               </ListGroup.Item>
             </ListGroup>
           </Card>
