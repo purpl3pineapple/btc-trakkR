@@ -1,3 +1,5 @@
+/* fiat/fee conversion ===> (sats/100,000,000) * currentPrice */
+
 export default class MempoolUtility {
   static convertMempoolBlockFormat = (block) => {
     const {
@@ -65,15 +67,15 @@ export default class MempoolUtility {
         coinbaseAddress,
         coinbaseRaw,
         coinbaseSignature,
-        expectedFees,
+        expectedFees: expectedFees === null ? "-" : expectedFees,
         expectedWeight: (expectedWeight / 1000000).toFixed(2),
         feePercentiles:
-          feePercentiles === null
+          feePercentiles === null || feePercentiles === '-'
             ? "-"
             : feePercentiles.map((fee) => fee.toFixed()),
         feeRange: MempoolUtility.findRange(feeRange),
         header,
-        matchRate,
+        matchRate: matchRate === null ? "-" : matchRate,
         medianFee: medianFee.toFixed(),
         pool: {
           name: poolName,
