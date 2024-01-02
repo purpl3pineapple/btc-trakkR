@@ -6,57 +6,55 @@ const { updatePrice, updateStats } = sliceBTC.actions;
 const btcMiddleware = createListenerMiddleware();
 
 btcMiddleware.startListening({
-    actionCreator: updatePrice,
-    effect: async (action, listenerAPI) => {
+  actionCreator: updatePrice,
+  effect: async (action, listenerAPI) => {
+    listenerAPI.unsubscribe();
 
-        listenerAPI.unsubscribe();
+    const {
+      BTC: { currentPrice },
+    } = listenerAPI.getOriginalState();
 
-        const {
-            BTC: { currentPrice }
-        } = listenerAPI.getOriginalState();
+    const { BTC } = action.payload;
 
-        const { BTC } = action.payload;
+    const numCurrentPrice =
+      currentPrice === null ? 0 : Number(currentPrice.replace(/,/g, ""));
 
-        const numCurrentPrice = currentPrice === null ? 0 : Number(currentPrice.replace(/,/g, ''));
+    const numBTC = Number(BTC.replace(/,/g, ""));
 
-        const numBTC = Number(BTC.replace(/,/g, ''));
+    const increased = numBTC > numCurrentPrice;
 
-        const increased =  numBTC > numCurrentPrice;
+    const decreased = numBTC < numCurrentPrice;
 
-        const decreased = numBTC < numCurrentPrice;
+    const change = [
+      { value: "increased", result: increased },
+      { value: "decreased", result: decreased },
+    ].find(({ result }) => result === true).value;
 
-        const change = [
-            {value: "increased", result: increased}, 
-            {value: "decreased", result: decreased}
-        ].find(({result}) => result === true).value;
+    listenerAPI.dispatch(
+      updatePrice({
+        BTC,
+        change,
+        loading: false,
+      })
+    );
 
-        listenerAPI.dispatch(
-            updatePrice({ 
-                BTC, 
-                change, 
-                loading: false 
-            })
-        );
-
-        listenerAPI.subscribe();
-    }
+    listenerAPI.subscribe();
+  },
 });
 
 btcMiddleware.startListening({
-    actionCreator: updateStats,
-    effect: async (action, listenerAPI) => {
+  actionCreator: updateStats,
+  effect: async (action, listenerAPI) => {
+    listenerAPI.unsubscribe();
 
-        listenerAPI.unsubscribe();
+    //console.log(action.payload);
 
-        //console.log(action.payload);
-        
-
-        /* listenerAPI.dispatch(
+    /* listenerAPI.dispatch(
             updateStats()
         ); */
 
-        listenerAPI.subscribe();
-    }
+    listenerAPI.subscribe();
+  },
 });
 
 export default btcMiddleware;
